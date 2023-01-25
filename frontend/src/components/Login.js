@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -13,7 +14,7 @@ export default function Login() {
         <input type="password"></input>
         </li>
         <li>
-          <button>Submit</button>
+          <Link to="/home"><button>Submit</button></Link>
         </li>
       </ul>
     </div>
