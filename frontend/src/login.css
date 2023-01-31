@@ -1,0 +1,25 @@
+div.login 
+{
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ul.loginList
+{
+  list-style-type: none;
+  display: inline-block;
+}
+
+li.listElemText
+{
+  margin: 10px;
+  text-align: right;
+}
+
+li.listElemBtn
+{
+  margin: 10px;
+  text-align: center;
+}
