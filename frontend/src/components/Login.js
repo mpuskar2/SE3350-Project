@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import '../login.css';
+import React from 'react';
+import '../styles.css';
 
 export default function Login() {
   return (
     <div className="login">
       <ul className="loginList">
         <li className="listElemText">
-        <label>Username </label>
-        <input type="text"></input>
+        <label>Email </label>
+        <input id="emailField" type="text"></input>
         </li>
         <li className="listElemText">
         <label>Password </label>
-        <input type="password"></input>
+        <input id="passwordField" type="password"></input>
         </li>
         <li className="listElemBtn">
-          <Link to="/home"><button>Submit</button></Link>
+          <button id="loginBtn" >Log In</button>
         </li>
       </ul>
     </div>
