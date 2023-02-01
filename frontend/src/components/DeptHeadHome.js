@@ -17,6 +17,7 @@ export default function Home() {
       <div>Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
+      
       <div>
         <button>Course Selection</button>
       </div>

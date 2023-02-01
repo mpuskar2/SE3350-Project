@@ -14,17 +14,17 @@ export default function Home() {
 
   return (
     <>
-      <div>Home {user?.email}
+      <div>Professor Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <button>Course Selection</button>
+        <button>Class 1</button>
       </div>
       <div>
-        <button>Assign Professor</button>
+        <button>Class 2</button>
       </div>
       <div>
-        <button>Remove Professor</button>
+        <button>Class 3</button>
       </div>
     </>
   )
