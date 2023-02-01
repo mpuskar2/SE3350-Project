@@ -19,7 +19,17 @@ export default function Login() {
   };
 
   onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) navigate("/home");
+    if (currentUser){
+      if (currentUser.displayName == "P") {
+        navigate("/professorhome");
+      }
+      else if (currentUser.displayName == "A") {
+        navigate("/adminhome");
+      }
+      else if (currentUser.displayName == "D") {
+        navigate("/deptheadhome");
+      }
+    }
   });
 
   return (

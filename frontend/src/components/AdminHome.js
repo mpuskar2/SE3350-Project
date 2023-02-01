@@ -24,7 +24,7 @@ export default function Home() {
         <button>ECE</button>
       </div>
       <div>
-        <button>MSC</button>
+        <button>MSE</button>
       </div>
       <div>
         <button>SE</button>
