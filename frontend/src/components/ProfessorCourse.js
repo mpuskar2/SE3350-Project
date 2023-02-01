@@ -18,16 +18,17 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <h2>Disciplines</h2>
+        <h3>COURSE NAME HERE</h3>
+        <h5>Select option below</h5>
       </div>
       <div>
-        <button>ECE</button>
+        <button>Edit Outline</button>
       </div>
       <div>
-        <button>MSC</button>
+        <button>View Previous Outlines</button>
       </div>
       <div>
-        <button>SE</button>
+        <button>Submit</button>
       </div>
     </>
   )
