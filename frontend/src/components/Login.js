@@ -13,7 +13,6 @@ export default function Login() {
     if (document.getElementById("emailField").value !== "" && document.getElementById("passwordField").value !== "") {
       try{
         await signInWithEmailAndPassword(auth, email, password);
-        navigate("/professorhome");
       }
       catch(e){
         alert("Login failed, please try again");
