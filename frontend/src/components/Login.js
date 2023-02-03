@@ -10,23 +10,30 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogIn = async () => {
-    try{
-      await signInWithEmailAndPassword(auth, email, password);
+    if (document.getElementById("emailField").value !== "" && document.getElementById("passwordField").value !== "") {
+      try{
+        await signInWithEmailAndPassword(auth, email, password);
+      }
+      catch(e){
+        alert("Login failed, please try again");
+        console.log(e);
+      }
     }
-    catch(e){
-      console.log(e);
+    else {
+      alert("Please enter a valid email and password");
     }
+
   };
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){
-      if (currentUser.displayName == "P") {
+      if (currentUser.displayName === "P") {
         navigate("/professorhome");
       }
-      else if (currentUser.displayName == "A") {
+      else if (currentUser.displayName === "A") {
         navigate("/adminhome");
       }
-      else if (currentUser.displayName == "D") {
+      else if (currentUser.displayName === "D") {
         navigate("/deptheadhome");
       }
     }

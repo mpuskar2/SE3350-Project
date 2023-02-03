@@ -11,17 +11,38 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
-    try{
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      updateProfile(user.user, {displayName: type});
+    if (document.getElementById("email").value !== "" && document.getElementById("password").value !== "") {
+      if (document.getElementById("p").checked || document.getElementById("a").checked || document.getElementById("d").checked) {
+        try{
+          const user = await createUserWithEmailAndPassword(auth, email, password);
+          updateProfile(user.user, {displayName: type});
+        }
+        catch(e){
+          alert("Account creation failed, please try again");
+          console.log(e);
+        }
+      }
+      else {
+        alert("Please select one of the buttons");
+      }
     }
-    catch(e){
-      console.log(e);
+    else {
+      alert("Please enter a valid email and password");
     }
   };
 
   onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) navigate("/home");
+    if (currentUser){
+      if (currentUser.displayName === "P") {
+        navigate("/professorhome");
+      }
+      else if (currentUser.displayName === "A") {
+        navigate("/adminhome");
+      }
+      else if (currentUser.displayName === "D") {
+        navigate("/deptheadhome");
+      }
+    }
   });
 
   return (
@@ -29,19 +50,19 @@ export default function Signup() {
       <ul className="loginList">
         <li className="listElemText">
         <label>Email </label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+        <input id="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
         </li>
         <li className="listElemText">
         <label>Password </label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         </li>
         <li className="listElemText">
-        <input type="radio" value={"P"} onChange={(e) => setType(e.target.value)}></input>
-        <label>Professor </label>
-        <input type="radio" value={"A"} onChange={(e) => setType(e.target.value)}></input>
-        <label>Administrator </label>
-        <input type="radio" value={"D"} onChange={(e) => setType(e.target.value)}></input>
-        <label>Department Chair</label>
+        <input id="p" type="radio" name="buttons" value={"P"} onChange={(e) => setType(e.target.value)}></input>
+        <label htmlFor="p">Professor </label>
+        <input id="a" type="radio" name="buttons" value={"A"} onChange={(e) => setType(e.target.value)}></input>
+        <label htmlFor="a">Administrator </label>
+        <input id="d" type="radio" name="buttons" value={"D"} onChange={(e) => setType(e.target.value)}></input>
+        <label htmlFor="d">Department Chair</label>
         </li>
         <li className="listElemBtn">
           <button onClick={handleSignUp}>Sign up</button>
