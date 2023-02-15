@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -18,6 +19,11 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
+        <Link to="/deptheadhome">
+          <button>Back</button>
+        </Link>
+      </div>
+      <div>
         <h3>COURSE NAME HERE</h3>
       </div>
       <div>
@@ -30,11 +36,29 @@ export default function Home() {
         <button>Return to Instructor</button>
       </div>
       <div>
-        <button>Approve</button>
+        <button onClick={() => approve("SE3350v1")}>Approve</button>
       </div>
       <div>
         <button>View Previous Outlines</button>
       </div>
     </>
   )
+
+  function approve(id) {
+    const db = getDatabase();
+    const oRef = ref(db, 'Outlines/' + id);
+
+    onValue(oRef, (snapshot) => {
+      const data = snapshot.val();
+
+      set(oRef, {
+        approvalStatus: "approved",
+        courseName: data.courseName,
+        filePath: data.filePath,
+        modifiedTime: data.modifiedTime,
+        versionNum: data.versionNum,
+        whoModified: data.whoModified
+      });
+    });
+  }
 }

@@ -5,6 +5,7 @@ import Home from './components/Home'
 import AdminHome from './components/AdminHome'
 import ProfessorHome from './components/ProfessorHome'
 import DeptHeadHome from './components/DeptHeadHome'
+import DeptHeadCourse from './components/DeptHeadCourse'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/adminhome" element={<AdminHome/>}/>
       <Route exact path="/professorhome" element={<ProfessorHome/>}/>
       <Route exact path="/deptheadhome" element={<DeptHeadHome/>}/>
+      <Route exact path="/deptheadcourse" element={<DeptHeadCourse/>}/>
     </Routes>
     </BrowserRouter>
   )

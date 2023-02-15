@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -14,6 +14,9 @@ export default function Home() {
 
   return (
     <>
+      <div>
+        <h2>Department Head</h2>
+      </div>
       <div>Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
@@ -27,7 +30,9 @@ export default function Home() {
         <button>MSC</button>
       </div>
       <div>
-        <button>SE</button>
+        <Link to="/deptheadcourse">
+          <button>SE</button>
+        </Link>
       </div>
     </>
   )
