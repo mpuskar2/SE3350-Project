@@ -12,13 +12,17 @@ export default function Home() {
     else navigate("/")
   });
 
+  const takeClass1 = (()=>{
+    navigate("/professorcourse");
+  });
+
   return (
     <>
       <div>Professor Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <button>Class 1</button>
+        <button onClick={takeClass1()}>Class 1</button>
       </div>
       <div>
         <button>Class 2</button>

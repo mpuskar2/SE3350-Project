@@ -12,6 +12,15 @@ export default function Home() {
     else navigate("/")
   });
 
+  const download = ((url) => {
+    const a = document.createElement('a')
+    a.href = url
+    a.download = url.split('/').pop()
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  });
+
   return (
     <>
       <div>Home {user?.email}
@@ -29,6 +38,9 @@ export default function Home() {
       </div>
       <div>
         <button>Submit</button>
+      </div>
+      <div>
+        <button type="submit" onClick={()=> {download("../../resources/OutlineTemplate.docx")}}>Download template</button>
       </div>
     </>
   )
