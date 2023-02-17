@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -27,7 +27,9 @@ export default function Home() {
         <button>Assign Professor</button>
       </div>
       <div>
-        <button>View Previous Outlines</button>
+        <Link to="/alloutlines">
+          <button>View Previous Outlines</button>
+        </Link>
       </div>
     </>
   )
