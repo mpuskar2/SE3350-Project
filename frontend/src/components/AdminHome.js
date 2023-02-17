@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -24,13 +24,19 @@ export default function Home() {
         <h2>Disciplines</h2>
       </div>
       <div>
-        <button>ECE</button>
+      <Link to="/admincourse">
+          <button>ECE</button>
+        </Link>
       </div>
       <div>
-        <button>MSE</button>
+      <Link to="/admincourse">
+          <button>MSE</button>
+        </Link>
       </div>
       <div>
-        <button>SE</button>
+        <Link to="/admincourse">
+          <button>SE</button>
+        </Link>
       </div>
     </>
   )
