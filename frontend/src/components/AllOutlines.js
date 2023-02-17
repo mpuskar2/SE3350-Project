@@ -28,17 +28,17 @@ export default function Home() {
         let list = document.getElementById('courseOutlines');
         let div = document.createElement('div');
         let versionNum = document.createElement('p');
-        let modifiedBy = document.createElement('p');
+        let whoModified = document.createElement('p');
         let modifiedDate = document.createElement('p');
         let download = document.createElement('button');
 
         versionNum.innerText = "Version Num: " + e.versionNum;
-        modifiedBy.innerText = "Modified By: " + e.modifiedBy;
+        whoModified.innerText = "Modified By: " + e.whoModified;
         modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
         download.innerText = "Download";
 
         div.appendChild(versionNum);
-        div.appendChild(modifiedBy);
+        div.appendChild(whoModified);
         div.appendChild(modifiedDate);
         div.appendChild(download);
         list.appendChild(div);
