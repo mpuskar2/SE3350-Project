@@ -10,8 +10,15 @@ export default function Home() {
   const navigate = useNavigate();
     let dbcp = "";
 
+let isProf = false;
+
   onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) setUser(currentUser);
+    if (currentUser){
+      setUser(currentUser);
+      if (currentUser.displayName === "P") {
+        isProf = true;
+      }
+    } 
     else navigate("/")
   });
 
@@ -25,23 +32,53 @@ export default function Home() {
       dbcp = snapshot.val();
 
       Object.values(dbcp).forEach(e => {
-        let list = document.getElementById('courseOutlines');
-        let div = document.createElement('div');
-        let versionNum = document.createElement('p');
-        let whoModified = document.createElement('p');
-        let modifiedDate = document.createElement('p');
-        let download = document.createElement('button');
+        if (isProf) {
+          if (e.approvalStatus === "approved") {
+            let list = document.getElementById('courseOutlines');
+            let div = document.createElement('div');
+            let versionNum = document.createElement('p');
+            let whoModified = document.createElement('p');
+            let modifiedDate = document.createElement('p');
+            let approvalStatus = document.createElement('p');
+            let download = document.createElement('button');
+    
+            versionNum.innerText = "Version Num: " + e.versionNum;
+            whoModified.innerText = "Modified By: " + e.whoModified;
+            modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+            approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
+            download.innerText = "Download";
+    
+            div.appendChild(versionNum);
+            div.appendChild(whoModified);
+            div.appendChild(modifiedDate);
+            div.appendChild(approvalStatus);
+            div.appendChild(download);
+            list.appendChild(div);
+          }
+        }
+        else {
+          let list = document.getElementById('courseOutlines');
+          let div = document.createElement('div');
+          let versionNum = document.createElement('p');
+          let whoModified = document.createElement('p');
+          let modifiedDate = document.createElement('p');
+          let approvalStatus = document.createElement('p');
+          let download = document.createElement('button');
+  
+          versionNum.innerText = "Version Num: " + e.versionNum;
+          whoModified.innerText = "Modified By: " + e.whoModified;
+          modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+          approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
+          download.innerText = "Download";
+  
+          div.appendChild(versionNum);
+          div.appendChild(whoModified);
+          div.appendChild(modifiedDate);
+          div.appendChild(approvalStatus);
+          div.appendChild(download);
+          list.appendChild(div);
+        }
 
-        versionNum.innerText = "Version Num: " + e.versionNum;
-        whoModified.innerText = "Modified By: " + e.whoModified;
-        modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
-        download.innerText = "Download";
-
-        div.appendChild(versionNum);
-        div.appendChild(whoModified);
-        div.appendChild(modifiedDate);
-        div.appendChild(download);
-        list.appendChild(div);
       });
     });
   }

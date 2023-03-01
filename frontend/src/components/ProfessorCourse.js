@@ -40,7 +40,7 @@ export default function Home() {
         <button>Submit</button>
       </div>
       <div>
-        <button type="submit" onClick={()=> {download("../../resources/OutlineTemplate.docx")}}>Download template</button>
+        <button type="submit" onClick={()=> {download("resources/OutlineTemplate.docx")}}>Download template</button>
       </div>
     </>
   )

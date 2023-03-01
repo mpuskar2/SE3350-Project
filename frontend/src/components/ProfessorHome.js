@@ -22,7 +22,7 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <button onClick={takeClass1()}>Class 1</button>
+        <button onClick={() =>takeClass1()}>Class 1</button>
       </div>
       <div>
         <button>Class 2</button>

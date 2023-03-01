@@ -30,7 +30,7 @@ export default function Home() {
             Name:
             <input type="text" id="instructorName" placeholder="Enter instructor name"/>
           </label>
-          <input type="submit" value="Assign Professor" onClick={() => assignCourse("SE3350")}></input>
+          <input type="button" value="Assign Professor" onClick={() => assignCourse("SE3350")}></input>
         </form>   
       </div>
       <div>
