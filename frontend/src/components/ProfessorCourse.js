@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -31,13 +31,12 @@ export default function Home() {
         <h5>Select option below</h5>
       </div>
       <div>
-        <button>Edit Outline</button>
+        <Link to="/editoutline">
+          <button>Edit Outline</button>
+        </Link>
       </div>
       <div>
         <button>View Previous Outlines</button>
-      </div>
-      <div>
-        <button>Submit</button>
       </div>
       <div>
         <button type="submit" onClick={()=> {download("resources/OutlineTemplate.docx")}}>Download template</button>
