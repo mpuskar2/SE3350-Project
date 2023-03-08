@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, set, onValue } from "firebase/database";
@@ -30,11 +30,13 @@ export default function Home() {
             Name:
             <input type="text" id="instructorName" placeholder="Enter instructor name"/>
           </label>
-          <input type="submit" value="Assign Professor" onClick={() => assignCourse("SE3350")}></input>
+          <input type="button" value="Assign Professor" onClick={() => assignCourse("SE3350")}></input>
         </form>   
       </div>
       <div>
-        <button>View Previous Outlines</button>
+        <Link to="/alloutlines">
+          <button>View Previous Outlines</button>
+        </Link>
       </div>
     </>
   )
