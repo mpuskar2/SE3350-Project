@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -32,37 +33,59 @@ export default function Home() {
     <br></br>
 
     <b>Description: </b>
-    
+    <div>
+    <input id="descriptionField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Instructor: </b>
-
+    <div>
+    <input id="instructorField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Acedemic Calender Copy: </b>
-
+    <div>
+    <input id="acedmicCalenderCopyField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Contact Hours: </b>
-
+    <div>
+    <input id="contactHoursField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Antirequisite: </b>
-
+    <div>
+    <input id="antirequisiteField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Prerequisite: </b>
-
+    <div>
+    <input id="prerequisiteField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Co-requisite: </b>
-
+    <div>
+    <input id="corequisiteField" type="text" name=""></input>
+    </div>
     <br></br>
-    <b>CEAB Acedmic Units: </b>
-
+    <b>CEAB Acedemic Units: </b>
+    <div>
+    <input id="academicUnitsField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Required Textbooks: </b>
-
+    <div>
+    <input id="requiredTextbooksField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Other Required References: </b>
-
+    <div>
+    <input id="otherRequiredReferencesField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>Recommended References: </b>
-
+    <div>
+    <input id="recommendedReferencesField" type="text" name=""></input>
+    </div>
     <br></br>
     <b>General Learning Objectives (CEAB Graduate Attributes)</b>
       <table>
@@ -71,14 +94,14 @@ export default function Home() {
     <th> 
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Knowledge Base"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Knowledge Base"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Knowledge Base"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Knowledge Base"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Knowledge Base"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Knowledge Base"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Knowledge Base"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form> 
  </th>
@@ -86,14 +109,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Use of Engineering Tools"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Use of Engineering Tools"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Use of Engineering Tools"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Use of Engineering Tools"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Use of Engineering Tools"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Use of Engineering Tools"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Use of Engineering Tools"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -101,14 +124,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Impact on Society and the Environment"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Impact on Society and the Environment"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Impact on Society and the Environment"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Impact on Society and the Environment"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Impact on Society and the Environment"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Impact on Society and the Environment"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Impact on Society and the Environment"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -118,14 +141,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Problem Analysis"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Problem Analysis"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Problem Analysis"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Problem Analysis"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Problem Analysis"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Problem Analysis"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Problem Analysis"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -133,14 +156,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Individual and Team Work"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Individual and Team Work"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Individual and Team Work"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Individual and Team Work"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Individual and Team Work"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Individual and Team Work"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Individual and Team Work"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -148,14 +171,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Ethics and Equity"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Ethics and Equity"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Ethics and Equity"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Ethics and Equity"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Ethics and Equity"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Ethics and Equity"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Ethics and Equity"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -165,14 +188,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Investigation"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Investigation"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Investigation"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Investigation"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Investigation"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Investigation"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Investigation"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -180,14 +203,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Communication Skills"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Communication Skills"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Communication Skills"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Communication Skills"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Communication Skills"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Communication Skills"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Communication Skills"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -195,14 +218,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Economics and Project Management"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Economics and Project Management"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Economics and Project Management"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Economics and Project Management"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Economics and Project Management"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Economics and Project Management"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Economics and Project Management"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -212,14 +235,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Design"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Design"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Design"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Design"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Design"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Design"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Design"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -227,14 +250,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Professionalism"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Professionalism"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Professionalism"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Professionalism"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Professionalism"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Professionalism"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Professionalism"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -242,14 +265,14 @@ export default function Home() {
     <th>
     <form>
           <label>
-            <input type="radio" id="a" value="A" name="Life-Long Learning"/>
-            <label for="a">A</label><br></br>
-            <input type="radio" id="b" value="B" name="Life-Long Learning"/>
-            <label for="b">B</label><br></br>
-            <input type="radio" id="c" value="C" name="Life-Long Learning"/>
-            <label for="c">C</label><br></br>
+            <input type="radio" id="i" value="I" name="Life-Long Learning"/>
+            <label for="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Life-Long Learning"/>
             <label for="d">D</label><br></br>
+            <input type="radio" id="a" value="A" name="Life-Long Learning"/>
+            <label for="a">A</label><br></br>
+            <input type="radio" id="empty" value="Empty" name="Life-Long Learning"/>
+            <label for="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -289,7 +312,9 @@ export default function Home() {
         Homework
     </td>
     <td> 
-        %
+      <div>
+        <input id="homeworkPercentField" type="number" name=""></input>%
+      </div>
     </td>
   </tr>
   <tr>
@@ -297,7 +322,9 @@ export default function Home() {
         Quizzes
     </td>
     <td> 
-        %
+    <div>
+        <input id="quizzesPercentField" type="number" name=""></input>%
+      </div>
     </td>
     </tr>
     <tr>
@@ -305,7 +332,9 @@ export default function Home() {
         Laboratory
     </td>
     <td> 
-        %
+    <div>
+        <input id="laboratoryPercentField" type="number" name=""></input>%
+      </div>
     </td>
     </tr>
     
@@ -314,7 +343,9 @@ export default function Home() {
         Midterm Test
     </td>
     <td> 
-        %
+    <div>
+        <input id="midtermTestPercentField" type="number" name=""></input>%
+      </div>
     </td>
     </tr>
     <tr>
@@ -322,7 +353,9 @@ export default function Home() {
         Final Examination
     </td>
     <td> 
-        %
+    <div>
+        <input id="finalExaminationPercentField" type="number" name=""></input>%
+      </div>
     </td>
     </tr>
 
@@ -330,30 +363,60 @@ export default function Home() {
 
   <br></br>
   <b>Evaluation</b>
-
+  <div>
+    <input id="evaluationField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Homework Assignments</b>
-
+  <div>
+    <input id="homeworkAssignmentsField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Quizzes: </b>
-
+  <div>
+    <input id="quizzesField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Laboratory: </b>
-
+  <div>
+    <input id="LaboratoryField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Midterm Test: </b>
-
+  <div>
+    <input id="midtermTestField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Final Examination: </b>
-
+  <div>
+    <input id="finalExaminationField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Late Submission Policy: </b>
-
+  <div>
+    <input id="lateSubmissionPolicyField" type="text" name=""></input>
+  </div>
   <br></br>
   <b>Assignment Submission Locker: </b>
-
+  <div>
+    <input id="assignmentSubmissionLockerField" type="text" name=""></input>
+  </div>
   <br></br>
-  <b>Description: </b>
     </>
   )
+
+/*/ PDF document
+  const MyDocument = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Text>Section #1</Text>
+        </View>
+        <View style={styles.section}>
+          <Text>Section #2</Text>
+        </View>
+      </Page>
+    </Document>
+  ); 
+  */
 }
