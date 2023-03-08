@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -20,6 +21,10 @@ export default function Home() {
     a.click()
     document.body.removeChild(a)
   });
+  const takeOutlines = (()=> {
+    navigate("/alloutlines");
+  });
+
 
   return (
     <>
@@ -27,14 +32,14 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <h3>COURSE NAME HERE</h3>
+        <h3>{activeCourse}</h3>
         <h5>Select option below</h5>
       </div>
       <div>
         <button>Edit Outline</button>
       </div>
       <div>
-        <button>View Previous Outlines</button>
+        <button onClick={()=>{takeOutlines()}}>View Previous Outlines</button>
       </div>
       <div>
         <button>Submit</button>

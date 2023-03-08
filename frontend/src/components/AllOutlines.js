@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from "firebase/database";
+import { activeCourse } from './ProfessorHome';
 
 
 export default function Home() {
@@ -101,7 +102,7 @@ let isProf = false;
         </Link>
       </div>
       <div>
-        <h3>All Course Outlines</h3>
+        <h3>All Course Outlines for {activeCourse}</h3>
       </div>
       <div>
         <button id="load" onClick={getOutlines}>Load Outlines</button>
