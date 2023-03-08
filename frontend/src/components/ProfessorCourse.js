@@ -31,7 +31,8 @@ export default function Home() {
         <h5>Select option below</h5>
       </div>
       <div>
-        <Link to="/editoutline">
+        
+      <Link to="/courseoutline">
           <button>Edit Outline</button>
         </Link>
       </div>

@@ -9,6 +9,7 @@ import DeptHeadHome from './components/DeptHeadHome'
 import DeptHeadCourse from './components/DeptHeadCourse'
 import ProfessorCourse from './components/ProfessorCourse'
 import AllOutlines from './components/AllOutlines'
+import CourseOutline from './components/CourseOutline'
 import EditOutline from './components/EditOutline'
 
 
@@ -26,6 +27,7 @@ function App() {
       <Route exact path="/professorcourse" element={<ProfessorCourse/>}/>
       <Route exact path="/deptheadcourse" element={<DeptHeadCourse/>}/>
       <Route exact path="/alloutlines" element={<AllOutlines/>}/>
+      <Route exact path="/courseoutline" element={<CourseOutline/>}/>
       <Route exact path="/editoutline" element={<EditOutline/>}/>
     </Routes>
     </BrowserRouter>
