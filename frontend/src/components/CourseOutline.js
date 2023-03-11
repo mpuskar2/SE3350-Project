@@ -19,6 +19,14 @@ export default function Home() {
 
   return (
     <>
+    <div>Home {user?.email}
+        <button onClick={() => signOut(auth)}>Log Out</button>
+    </div>
+    <div>
+      <Link to="/professorcourse">
+        <button>Back</button>
+      </Link>
+    </div>
     <div>
     <b>Western University</b><br></br>
     <b>Faculty of Engineering</b><br></br>
@@ -85,6 +93,7 @@ export default function Home() {
     <br></br>
     <b>General Learning Objectives (CEAB Graduate Attributes)</b>
       <table>
+      <tbody>
   <tr>
     <td>Knowledge Base</td>
     <th> 
@@ -273,10 +282,12 @@ export default function Home() {
     </form>
     </th>
   </tr>
+  </tbody>
 </table>
 
 <br></br>
 <table>
+<tbody>
   <tr>
     <th>Course Topics and Specific Learning Outcomes</th>
     <th>CEAB Graduate Attributes Indicators</th>
@@ -295,10 +306,12 @@ export default function Home() {
         </ol>
     </td>
   </tr>
+  </tbody>
   </table>
 
   <br></br>
 <table>
+<tbody>
   <tr>
     <th>Course Component</th>
     <th>Weight</th>
@@ -354,7 +367,7 @@ export default function Home() {
       </div>
     </td>
     </tr>
-
+    </tbody>
   </table>
 
   <br></br>
