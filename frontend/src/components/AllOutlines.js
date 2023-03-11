@@ -38,19 +38,19 @@ let isProf = false;
             let div = document.createElement('div');
             let versionNum = document.createElement('p');
             let whoModified = document.createElement('p');
-            let modifiedDate = document.createElement('p');
+            let modifiedTime = document.createElement('p');
             let approvalStatus = document.createElement('p');
             let download = document.createElement('button');
     
             versionNum.innerText = "Version Num: " + e.versionNum;
             whoModified.innerText = "Modified By: " + e.whoModified;
-            modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+            modifiedTime.innerText = "Modified Time: " + e.modifiedTime;
             approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
             download.innerText = "Download";
     
             div.appendChild(versionNum);
             div.appendChild(whoModified);
-            div.appendChild(modifiedDate);
+            div.appendChild(modifiedTime);
             div.appendChild(approvalStatus);
             div.appendChild(download);
             list.appendChild(div);
@@ -61,19 +61,19 @@ let isProf = false;
           let div = document.createElement('div');
           let versionNum = document.createElement('p');
           let whoModified = document.createElement('p');
-          let modifiedDate = document.createElement('p');
+          let modifiedTime = document.createElement('p');
           let approvalStatus = document.createElement('p');
           let download = document.createElement('button');
   
           versionNum.innerText = "Version Num: " + e.versionNum;
           whoModified.innerText = "Modified By: " + e.whoModified;
-          modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+          modifiedTime.innerText = "Modified Time: " + e.modifiedTime;
           approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
           download.innerText = "Download";
   
           div.appendChild(versionNum);
           div.appendChild(whoModified);
-          div.appendChild(modifiedDate);
+          div.appendChild(modifiedTime);
           div.appendChild(approvalStatus);
           div.appendChild(download);
           list.appendChild(div);

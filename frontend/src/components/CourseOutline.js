@@ -2,28 +2,24 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { getDatabase, ref, set, onValue, increment, update } from "firebase/database";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
 
+  let email;
   onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) setUser(currentUser);
+    if (currentUser) {
+      setUser(currentUser);
+      email = currentUser.email;
+    }
     else navigate("/")
-  });
-
-  const download = ((url) => {
-    const a = document.createElement('a')
-    a.href = url
-    a.download = url.split('/').pop()
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
   });
 
   return (
     <>
+    <div>
     <b>Western University</b><br></br>
     <b>Faculty of Engineering</b><br></br>
     <b>Department of Electrical and Computer Engineering</b><br></br>
@@ -44,7 +40,7 @@ export default function Home() {
     <br></br>
     <b>Acedemic Calender Copy: </b>
     <div>
-    <input id="acedmicCalenderCopyField" type="text" name=""></input>
+    <input id="academicCalenderCopyField" type="text" name=""></input>
     </div>
     <br></br>
     <b>Contact Hours: </b>
@@ -95,13 +91,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Knowledge Base"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Knowledge Base"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Knowledge Base"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Knowledge Base"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form> 
  </th>
@@ -110,13 +106,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Use of Engineering Tools"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Use of Engineering Tools"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Use of Engineering Tools"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Use of Engineering Tools"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -125,13 +121,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Impact on Society and the Environment"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Impact on Society and the Environment"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Impact on Society and the Environment"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Impact on Society and the Environment"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -142,13 +138,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Problem Analysis"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Problem Analysis"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Problem Analysis"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Problem Analysis"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -157,13 +153,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Individual and Team Work"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Individual and Team Work"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Individual and Team Work"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Individual and Team Work"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -172,13 +168,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Ethics and Equity"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Ethics and Equity"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Ethics and Equity"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Ethics and Equity"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -189,13 +185,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Investigation"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Investigation"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Investigation"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Investigation"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -204,13 +200,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Communication Skills"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Communication Skills"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Communication Skills"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Communication Skills"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -219,13 +215,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Economics and Project Management"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Economics and Project Management"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Economics and Project Management"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Economics and Project Management"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -236,13 +232,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Design"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Design"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Design"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Design"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -251,13 +247,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Professionalism"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Professionalism"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Professionalism"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Professionalism"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -266,13 +262,13 @@ export default function Home() {
     <form>
           <label>
             <input type="radio" id="i" value="I" name="Life-Long Learning"/>
-            <label for="i">I</label><br></br>
+            <label htmlFor="i">I</label><br></br>
             <input type="radio" id="d" value="D" name="Life-Long Learning"/>
-            <label for="d">D</label><br></br>
+            <label htmlFor="d">D</label><br></br>
             <input type="radio" id="a" value="A" name="Life-Long Learning"/>
-            <label for="a">A</label><br></br>
+            <label htmlFor="a">A</label><br></br>
             <input type="radio" id="empty" value="Empty" name="Life-Long Learning"/>
-            <label for="empty">Empty</label><br></br>
+            <label htmlFor="empty">Empty</label><br></br>
           </label>
     </form>
     </th>
@@ -402,21 +398,92 @@ export default function Home() {
     <input id="assignmentSubmissionLockerField" type="text" name=""></input>
   </div>
   <br></br>
+  </div>
+      <div>
+        <button onClick={() => updateOutline("SE3350", email)}>Submit</button>
+      </div>
     </>
   )
+}
 
-/*/ PDF document
-  const MyDocument = () => (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>Section #1</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>Section #2</Text>
-        </View>
-      </Page>
-    </Document>
-  ); 
-  */
+function getFields() {
+  let coContents = [];
+  coContents.push(document.getElementById('descriptionField').value);
+  coContents.push(document.getElementById('instructorField').value);
+  coContents.push(document.getElementById('academicCalenderCopyField').value);
+  coContents.push(document.getElementById('contactHoursField').value);
+  coContents.push(document.getElementById('antirequisiteField').value);
+  coContents.push(document.getElementById('prerequisiteField').value);
+  coContents.push(document.getElementById('corequisiteField').value);
+  coContents.push(document.getElementById('academicUnitsField').value);
+  coContents.push(document.getElementById('requiredTextbooksField').value);
+  coContents.push(document.getElementById('otherRequiredReferencesField').value);
+  coContents.push(document.getElementById('recommendedReferencesField').value);
+
+  let radios = [];
+  radios.push(document.getElementsByName('Knowledge Base'), document.getElementsByName('Use of Engineering Tools'), document.getElementsByName('Impact on Society and the Environment'), document.getElementsByName('Problem Analysis'), document.getElementsByName('Individual and Team Work'), document.getElementsByName('Ethics and Equity'), document.getElementsByName('Investigation'), document.getElementsByName('Communication Skills'), document.getElementsByName('Economics and Project Management'), document.getElementsByName('Design'), document.getElementsByName('Professionalism'), document.getElementsByName('Life-Long Learning'));
+
+  radios.forEach(value => {
+    let notChecked = 0;
+    for (let radio of value) {
+      if (radio.checked) {
+        coContents.push(radio.value);
+      } else {
+        notChecked++;
+      }
+      if (notChecked === 4) {
+        coContents.push('Empty');
+      }
+    }
+  });
+
+  coContents.push(document.getElementById('homeworkPercentField').value);
+  coContents.push(document.getElementById('quizzesPercentField').value);
+  coContents.push(document.getElementById('laboratoryPercentField').value);
+  coContents.push(document.getElementById('midtermTestPercentField').value);
+  coContents.push(document.getElementById('finalExaminationPercentField').value);
+  coContents.push(document.getElementById('evaluationField').value);
+  coContents.push(document.getElementById('homeworkAssignmentsField').value);
+  coContents.push(document.getElementById('quizzesField').value);
+  coContents.push(document.getElementById('LaboratoryField').value);
+  coContents.push(document.getElementById('midtermTestField').value);
+  coContents.push(document.getElementById('finalExaminationField').value);
+  coContents.push(document.getElementById('lateSubmissionPolicyField').value);
+  coContents.push(document.getElementById('assignmentSubmissionLockerField').value);
+
+  return coContents;
+}
+
+function updateOutline(id, email) {
+  // Get form values
+  let coContents = getFields();
+
+  const db = getDatabase();
+  
+  const dbRef = ref(getDatabase());
+  const updates = {};
+  updates[`OutlineCount/${id}/count`] = increment(1);
+  update(dbRef, updates);
+
+  let today = new Date();
+  let date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+  let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  let dateTime = date + ' ' + time;
+
+  const ocRef = ref(db, 'OutlineCount/' + id);
+  onValue(ocRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data.count);
+
+    const oRef = ref(db, `Outlines/${id}v${data.count}`);
+    set(oRef, {
+      approvalStatus: "",
+      courseName: id,
+      filePath: "",
+      modifiedTime: dateTime,
+      versionNum: data.count,
+      whoModified: email,
+      contents: coContents
+    });
+  });
 }
