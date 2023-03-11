@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getDatabase, set, ref} from "firebase/database";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAQGHrc_OgGqpK_sLXFIljlAlX8HWkUrQo",
@@ -14,10 +14,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 export const db = getDatabase(app);
-export const addOutline = (id, courseName, whoModified, modifiedTime, versionNum, approvalStatus, filePath ) => {
-  set(ref(db, `Outlines/${id}`), {courseName:courseName, whoModified:whoModified, 
-    modifiedTime:modifiedTime, versionNum:versionNum, approvalStatus:approvalStatus, filePath:filePath});
-}
-export const auth = getAuth(app);
-export default app;
+export default auth;
