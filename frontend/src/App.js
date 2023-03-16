@@ -10,6 +10,8 @@ import DeptHeadCourse from './components/DeptHeadCourse';
 import ProfessorCourse from './components/ProfessorCourse';
 import AllOutlines from './components/AllOutlines';
 import CourseOutline from './components/CourseOutline';
+import PreviewOutline from './components/PreviewOutline';
+
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
       <Route exact path="/deptheadcourse" element={<DeptHeadCourse/>}/>
       <Route exact path="/alloutlines" element={<AllOutlines/>}/>
       <Route exact path="/courseoutline" element={<CourseOutline/>}/>
+      <Route exact path="/previewoutline" element={<PreviewOutline/>}/>
+
     </Routes>
     </BrowserRouter>
   )
