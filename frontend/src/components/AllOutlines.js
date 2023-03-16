@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from "firebase/database";
+import { activeCourse } from './ProfessorHome';
 
 
 export default function Home() {
@@ -38,19 +39,19 @@ let isProf = false;
             let div = document.createElement('div');
             let versionNum = document.createElement('p');
             let whoModified = document.createElement('p');
-            let modifiedDate = document.createElement('p');
+            let modifiedTime = document.createElement('p');
             let approvalStatus = document.createElement('p');
             let download = document.createElement('button');
     
             versionNum.innerText = "Version Num: " + e.versionNum;
             whoModified.innerText = "Modified By: " + e.whoModified;
-            modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+            modifiedTime.innerText = "Modified Time: " + e.modifiedTime;
             approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
             download.innerText = "Download";
     
             div.appendChild(versionNum);
             div.appendChild(whoModified);
-            div.appendChild(modifiedDate);
+            div.appendChild(modifiedTime);
             div.appendChild(approvalStatus);
             div.appendChild(download);
             list.appendChild(div);
@@ -61,19 +62,19 @@ let isProf = false;
           let div = document.createElement('div');
           let versionNum = document.createElement('p');
           let whoModified = document.createElement('p');
-          let modifiedDate = document.createElement('p');
+          let modifiedTime = document.createElement('p');
           let approvalStatus = document.createElement('p');
           let download = document.createElement('button');
   
           versionNum.innerText = "Version Num: " + e.versionNum;
           whoModified.innerText = "Modified By: " + e.whoModified;
-          modifiedDate.innerText = "Modified Date: " + e.modifiedDate;
+          modifiedTime.innerText = "Modified Time: " + e.modifiedTime;
           approvalStatus.innerText = "Approval Status: " + e.approvalStatus;
           download.innerText = "Download";
   
           div.appendChild(versionNum);
           div.appendChild(whoModified);
-          div.appendChild(modifiedDate);
+          div.appendChild(modifiedTime);
           div.appendChild(approvalStatus);
           div.appendChild(download);
           list.appendChild(div);
@@ -101,7 +102,7 @@ let isProf = false;
         </Link>
       </div>
       <div>
-        <h3>All Course Outlines</h3>
+        <h3>All Course Outlines for {activeCourse}</h3>
       </div>
       <div>
         <button id="load" onClick={getOutlines}>Load Outlines</button>

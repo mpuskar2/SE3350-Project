@@ -1,16 +1,15 @@
 import Login from './components/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
-import Home from './components/Home'
-import AdminHome from './components/AdminHome'
-import AdminCourse from './components/AdminCourse'
-import ProfessorHome from './components/ProfessorHome'
-import DeptHeadHome from './components/DeptHeadHome'
-import DeptHeadCourse from './components/DeptHeadCourse'
-import ProfessorCourse from './components/ProfessorCourse'
-import AllOutlines from './components/AllOutlines'
-import CourseOutline from './components/CourseOutline'
-
+import Home from './components/Home';
+import AdminHome from './components/AdminHome';
+import AdminCourse from './components/AdminCourse';
+import ProfessorHome from './components/ProfessorHome';
+import DeptHeadHome from './components/DeptHeadHome';
+import DeptHeadCourse from './components/DeptHeadCourse';
+import ProfessorCourse from './components/ProfessorCourse';
+import AllOutlines from './components/AllOutlines';
+import CourseOutline from './components/CourseOutline';
 
 function App() {
   return (

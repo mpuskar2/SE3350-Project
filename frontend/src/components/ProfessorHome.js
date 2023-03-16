@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
+export var activeCourse;
+
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
@@ -16,13 +18,25 @@ export default function Home() {
     navigate("/professorcourse");
   });
 
+  const activeClass = ((setActive) => {
+    activeCourse = setActive;
+    if(activeClass == null){
+      activeClass = "no class";
+    }
+  });
+
+  const nextPage = ((className) => {
+    activeClass(className);
+    takeClass1();
+  });
+
   return (
     <>
       <div>Professor Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <button onClick={() =>takeClass1()}>Class 1</button>
+        <button onClick={() =>nextPage("SE3350")}>se3350</button>
       </div>
       <div>
         <button>Class 2</button>
