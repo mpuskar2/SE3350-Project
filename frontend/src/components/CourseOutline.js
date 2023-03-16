@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, set, onValue, increment, update } from "firebase/database";
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, PDFViewer, Font } from '@react-pdf/renderer';
+
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -15,6 +17,15 @@ export default function Home() {
       email = currentUser.email;
     }
     else navigate("/")
+  });
+
+  const download = ((url) => {
+    const a = document.createElement('a')
+    a.href = url
+    a.download = url.split('/').pop()
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
   });
 
   return (
@@ -411,10 +422,6 @@ export default function Home() {
     <input id="assignmentSubmissionLockerField" type="text" name=""></input>
   </div>
   <br></br>
-  </div>
-      <div>
-        <button onClick={() => updateOutline("SE3350", email)}>Submit</button>
-      </div>
     </>
   )
 }
