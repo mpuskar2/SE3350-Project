@@ -34,7 +34,7 @@ let isProf = false;
 
       Object.values(dbcp).forEach(e => {
         if (isProf) {
-          if (e.approvalStatus === "approved") {
+          if (e.approvalStatus === "approved" && e.courseName === activeCourse) {
             let list = document.getElementById('courseOutlines');
             let div = document.createElement('div');
             let versionNum = document.createElement('p');
@@ -57,7 +57,7 @@ let isProf = false;
             list.appendChild(div);
           }
         }
-        else {
+        else{ if(e.courseName === activeCourse) {
           let list = document.getElementById('courseOutlines');
           let div = document.createElement('div');
           let versionNum = document.createElement('p');
@@ -79,7 +79,7 @@ let isProf = false;
           div.appendChild(download);
           list.appendChild(div);
         }
-
+      }
       });
     });
   }

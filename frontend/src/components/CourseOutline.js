@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, set, onValue, increment, update } from "firebase/database";
+import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -31,64 +32,70 @@ export default function Home() {
     <b>Western University</b><br></br>
     <b>Faculty of Engineering</b><br></br>
     <b>Department of Electrical and Computer Engineering</b><br></br>
-    <h2>ECE XXXXA/B: Course Title</h2>
+    <h2>ECE {activeCourse}: Course Title</h2>
     <b>Course Outline 20YY-YY</b>
     <br></br>
     <br></br>
 
     <b>Description: </b>
     <div>
-    <input id="descriptionField" type="text" name=""></input>
+    <input id="descriptionField" type="text" name="" placeholder="Enter desciption here"></input>
     </div>
     <br></br>
     <b>Instructor: </b>
     <div>
-    <input id="instructorField" type="text" name=""></input>
+    <input id="instructorField1" type="text" name="" placeholder="Enter name"></input>
+    <input id="instructorField2" type="text" name="" placeholder="Enter office number, phone number and email"></input>
+    <input id="instructorField3" type="text" name="" placeholder="Enter consultation hours"></input>
     </div>
     <br></br>
     <b>Acedemic Calender Copy: </b>
     <div>
-    <input id="academicCalenderCopyField" type="text" name=""></input>
+    <input id="academicCalenderCopyField" type="text" name="" placeholder="Enter academic calender information"></input>
     </div>
     <br></br>
     <b>Contact Hours: </b>
     <div>
-    <input id="contactHoursField" type="text" name=""></input>
+    <input id="contactHoursField1" type="text" name="" placeholder="Enter lecture hours"></input>
+    <input id="contactHoursField2" type="text" name="" placeholder="Enter laboratory hours"></input>
+    <input id="contactHoursField3" type="text" name="" placeholder="Enter tutorial hours"></input>
+    <input id="contactHoursField4" type="text" name="" placeholder="Enter number of credits course is worth"></input>
     </div>
     <br></br>
     <b>Antirequisite: </b>
     <div>
-    <input id="antirequisiteField" type="text" name=""></input>
+    <input id="antirequisiteField" type="text" name="" placeholder="Enter antirequisites to this course"></input>
     </div>
     <br></br>
     <b>Prerequisite: </b>
     <div>
-    <input id="prerequisiteField" type="text" name=""></input>
+    <input id="prerequisiteField" type="text" name="" placeholder="Enter prerequisites to this course"></input>
     </div>
     <br></br>
     <b>Co-requisite: </b>
     <div>
-    <input id="corequisiteField" type="text" name=""></input>
+    <input id="corequisiteField" type="text" name="" placeholder="Enter co-requisites for this course"></input>
     </div>
     <br></br>
     <b>CEAB Acedemic Units: </b>
     <div>
-    <input id="academicUnitsField" type="text" name=""></input>
+    <input id="academicUnitsField1" type="text" name="" placeholder="Enter Engineering Science percentage"></input>
+    <input id="academicUnitsField2" type="text" name="" placeholder="Enter Engineering Design percentage"></input>
     </div>
     <br></br>
     <b>Required Textbooks: </b>
     <div>
-    <input id="requiredTextbooksField" type="text" name=""></input>
+    <input id="requiredTextbooksField" type="text" name="" placeholder="Enter required textbooks"></input>
     </div>
     <br></br>
     <b>Other Required References: </b>
     <div>
-    <input id="otherRequiredReferencesField" type="text" name=""></input>
+    <input id="otherRequiredReferencesField" type="text" name="" placeholder="Enter required references"></input>
     </div>
     <br></br>
     <b>Recommended References: </b>
     <div>
-    <input id="recommendedReferencesField" type="text" name=""></input>
+    <input id="recommendedReferencesField" type="text" name="" placeholder="Enter recommended references"></input>
     </div>
     <br></br>
     <b>General Learning Objectives (CEAB Graduate Attributes)</b>
@@ -310,6 +317,10 @@ export default function Home() {
   </table>
 
   <br></br>
+  <b>Evaluation</b>
+  <div>
+  <br></br>
+  </div>
 <table>
 <tbody>
   <tr>
@@ -322,7 +333,7 @@ export default function Home() {
     </td>
     <td> 
       <div>
-        <input id="homeworkPercentField" type="number" name=""></input>%
+        <input id="homeworkPercentField" type="number" name="" placeholder="Enter assignment percentage"></input>%
       </div>
     </td>
   </tr>
@@ -332,7 +343,7 @@ export default function Home() {
     </td>
     <td> 
     <div>
-        <input id="quizzesPercentField" type="number" name=""></input>%
+        <input id="quizzesPercentField" type="number" name="" placeholder="Enter quiz percentage"></input>%
       </div>
     </td>
     </tr>
@@ -342,7 +353,7 @@ export default function Home() {
     </td>
     <td> 
     <div>
-        <input id="laboratoryPercentField" type="number" name=""></input>%
+        <input id="laboratoryPercentField" type="number" name="" placeholder="Enter laboratory percentage"></input>%
       </div>
     </td>
     </tr>
@@ -353,7 +364,7 @@ export default function Home() {
     </td>
     <td> 
     <div>
-        <input id="midtermTestPercentField" type="number" name=""></input>%
+        <input id="midtermTestPercentField" type="number" name="" placeholder="Enter midterm percentage"></input>%
       </div>
     </td>
     </tr>
@@ -363,7 +374,7 @@ export default function Home() {
     </td>
     <td> 
     <div>
-        <input id="finalExaminationPercentField" type="number" name=""></input>%
+        <input id="finalExaminationPercentField" type="number" name="" placeholder="Enter final exam percentage"></input>%
       </div>
     </td>
     </tr>
@@ -371,44 +382,39 @@ export default function Home() {
   </table>
 
   <br></br>
-  <b>Evaluation</b>
-  <div>
-    <input id="evaluationField" type="text" name=""></input>
-  </div>
-  <br></br>
   <b>Homework Assignments</b>
   <div>
-    <input id="homeworkAssignmentsField" type="text" name=""></input>
+    <input id="homeworkAssignmentsField" type="text" name="" placeholder="Enter homework assignment information"></input>
   </div>
   <br></br>
   <b>Quizzes: </b>
   <div>
-    <input id="quizzesField" type="text" name=""></input>
+    <input id="quizzesField" type="text" name="" placeholder="Enter quiz information"></input>
   </div>
   <br></br>
   <b>Laboratory: </b>
   <div>
-    <input id="LaboratoryField" type="text" name=""></input>
+    <input id="LaboratoryField" type="text" name="" placeholder="Enter laboratory information"></input>
   </div>
   <br></br>
   <b>Midterm Test: </b>
   <div>
-    <input id="midtermTestField" type="text" name=""></input>
+    <input id="midtermTestField" type="text" name="" placeholder="Enter midterm information"></input>
   </div>
   <br></br>
   <b>Final Examination: </b>
   <div>
-    <input id="finalExaminationField" type="text" name=""></input>
+    <input id="finalExaminationField" type="text" name="" placeholder="Enter final examination information"></input>
   </div>
   <br></br>
   <b>Late Submission Policy: </b>
   <div>
-    <input id="lateSubmissionPolicyField" type="text" name=""></input>
+    <input id="lateSubmissionPolicyField" type="text" name="" placeholder="Enter late submission policy"></input>
   </div>
   <br></br>
   <b>Assignment Submission Locker: </b>
   <div>
-    <input id="assignmentSubmissionLockerField" type="text" name=""></input>
+    <input id="assignmentSubmissionLockerField1" type="text" name="" placeholder="Enter locker number and location of submission locker"></input>
   </div>
   <br></br>
   </div>

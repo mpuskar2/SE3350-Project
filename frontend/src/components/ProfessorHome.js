@@ -39,7 +39,7 @@ export default function Home() {
         <button onClick={() =>nextPage("SE3350")}>se3350</button>
       </div>
       <div>
-        <button>Class 2</button>
+        <button onClick={() =>nextPage("SE3310")}>se3310</button>
       </div>
       <div>
         <button>Class 3</button>
