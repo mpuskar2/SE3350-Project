@@ -33,7 +33,7 @@ export default function Home() {
     <b>Faculty of Engineering</b><br></br>
     <b>Department of Electrical and Computer Engineering</b><br></br>
     <h2>ECE {activeCourse}: Course Title</h2>
-    <b>Course Outline 20YY-YY</b>
+    <b>Course Outline <input id="yearField" type="number" name="" placeholder="Enter year"></input></b>
     <br></br>
     <br></br>
 
@@ -45,7 +45,8 @@ export default function Home() {
     <b>Instructor: </b>
     <div>
     <input id="instructorField1" type="text" name="" placeholder="Enter name"></input>
-    <input id="instructorField2" type="text" name="" placeholder="Enter office number, phone number and email"></input>
+    <input id="instructorField2" type="text" name="" placeholder="Enter building and office number"></input>
+    <input id="instructorField2" type="text" name="" placeholder="Extension number"></input>
     <input id="instructorField3" type="text" name="" placeholder="Enter consultation hours"></input>
     </div>
     <br></br>
@@ -300,17 +301,39 @@ export default function Home() {
     <th>CEAB Graduate Attributes Indicators</th>
   </tr>
   <tr>
-    <td> 
-        <ol>
-            <li>Topic 1</li>
-            <p>At the end of this section, students will be able to:</p>
-            <li>Topic 2</li>
-            <p>At the end of this section, students will be able to:</p>
-            <li>Topic 3</li>
-            <p>At the end of this section, students will be able to:</p>
-            <li>Topic 4</li>
-            <p>At the end of this section, students will be able to:</p>
-        </ol>
+    <td>
+      1. <input id="topic1Field" type="text" name="" placeholder="Enter topic 1 title"></input><br></br>
+      At the end of this section, students will be able to: <br></br><input id="topic1OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
+    </td>
+    <td>
+    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    </td>
+  </tr>
+  <tr>
+  <td>
+    2. <input id="topic2Field" type="text" name="" placeholder="Enter topic 2 title"></input><br></br>
+    At the end of this section, students will be able to: <br></br><input id="topic2OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
+    </td>
+    <td>
+    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    </td>
+  </tr>
+  <tr>
+  <td>
+    3. <input id="topic3Field" type="text" name="" placeholder="Enter topic 3 title"></input><br></br>
+    At the end of this section, students will be able to: <br></br><input id="topic3OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
+    </td>
+    <td>
+    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    </td>
+  </tr>
+  <tr>
+  <td>
+    4. <input id="topic4Field" type="text" name="" placeholder="Enter topic 4 title"></input><br></br>
+    At the end of this section, students will be able to: <br></br><input id="topic4OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
+    </td>
+    <td>
+    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
     </td>
   </tr>
   </tbody>
@@ -418,6 +441,10 @@ export default function Home() {
   </div>
   <br></br>
   </div>
+      <div>
+       <b> Enter how to assess GA indicators (this will not be displayed on course outline) </b><br></br>
+        <input id="GAIndicatorAssessmentField" type="text" name="" placeholder=" "></input>
+      </div>
       <div>
         <button onClick={() => updateOutline("SE3350", email)}>Submit</button>
       </div>
