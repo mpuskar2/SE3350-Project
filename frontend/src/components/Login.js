@@ -59,7 +59,6 @@ export default function Login() {
           </span> <br></br>
           <Link to="/signup"><button className='tBtn'>Sign up</button></Link>
         </li>
-        </li>
       </ul>
     </div>
   )
