@@ -68,10 +68,10 @@ export default function Signup() {
           <button onClick={handleSignUp}>Sign up</button>
         </li>
         <li className="listElemBtn">
-          <span>
-            Already have an account?
-            <Link to="/">Log In</Link>
-          </span>
+          <span className='transition'>
+            Don't have an account?
+          </span> <br></br>
+          <Link to="/"><button className='tBtn'>Log in</button></Link>
         </li>
       </ul>
     </div>
