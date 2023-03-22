@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { getDatabase, ref, set, onValue, increment, update } from "firebase/database";
-import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, PDFViewer, Font } from '@react-pdf/renderer';
+import { getDatabase, ref, onValue } from "firebase/database";
+import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const [fieldData, setFields] = useState([]);
+  const needData = useRef(true);
   const navigate = useNavigate();
 
-  let courseandversion = 'SE3350v7';
+  let courseandversion = localStorage.getItem('cNameAndVer');
   let email;
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -21,16 +22,28 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const db = getDatabase();
-    const ocRef = ref(db, 'Outlines/' + courseandversion);
-  
-    onValue(ocRef, (snapshot) => {
-      const data = snapshot.val();
-      const fields = data.contents;
-      setFields(fields);
-    });
-
-  }, []);
+    if (needData.current) {
+      needData.current = false;
+      const db = getDatabase();
+      const ocRef = ref(db, 'Outlines/' + courseandversion);
+    
+      onValue(ocRef, (snapshot) => {
+        const data = snapshot.val();
+        const fields = data.contents;
+        setFields(fields);
+      });
+    }
+    else {
+      const db = getDatabase();
+      const ocRef = ref(db, 'Outlines/' + courseandversion);
+    
+      onValue(ocRef, (snapshot) => {
+        const data = snapshot.val();
+        const fields = data.contents;
+        setFields(fields);
+      });
+    }
+  });
   
 // stylesheet for PDF
 Font.register({ family: 'Times-Roman', src: "/C:/Windows/Fonts/Times New Roman" });
@@ -300,11 +313,10 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <Link to="/admincourse">
+        <Link to="/alloutlines">
           <button>Back</button>
         </Link>
       </div>
-      <button>Load</button>
       <PDFViewer className='pdf'>
             <MyDocument />
         </PDFViewer>
