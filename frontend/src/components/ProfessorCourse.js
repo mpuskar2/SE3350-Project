@@ -13,6 +13,11 @@ export default function Home() {
     else navigate("/")
   });
 
+
+  // const currentCourse = window.name;
+  const currentCourse = localStorage.getItem("courseName");
+  
+
   const download = ((url) => {
     const a = document.createElement('a')
     a.href = url
@@ -32,7 +37,7 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <h3>{activeCourse}</h3>
+        <h3>{currentCourse}</h3>
         <h5>Select option below</h5>
       </div>
       <div>
