@@ -54,10 +54,11 @@ export default function Login() {
           <button id="loginBtn" onClick={handleLogIn}>Log In</button>
         </li>
         <li className="listElemBtn">
-          <span>
+          <span className='transition'>
             Don't have an account?
-            <Link to="/signup">Sign Up</Link>
-          </span>
+          </span> <br></br>
+          <Link to="/signup"><button className='tBtn'>Sign up</button></Link>
+        </li>
         </li>
       </ul>
     </div>
