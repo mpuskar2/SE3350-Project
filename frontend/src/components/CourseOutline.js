@@ -32,7 +32,7 @@ export default function Home() {
     <b>Western University</b><br></br>
     <b>Faculty of Engineering</b><br></br>
     <b>Department of Electrical and Computer Engineering</b><br></br>
-    <h2>ECE {activeCourse}: Course Title</h2>
+    <h2>{activeCourse}: Course Title</h2>
     <b>Course Outline <input id="yearField" type="number" name="" placeholder="Enter year"></input></b>
     <br></br>
     <br></br>
@@ -46,8 +46,8 @@ export default function Home() {
     <div>
     <input id="instructorField1" type="text" name="" placeholder="Enter name"></input>
     <input id="instructorField2" type="text" name="" placeholder="Enter building and office number"></input>
-    <input id="instructorField2" type="text" name="" placeholder="Extension number"></input>
-    <input id="instructorField3" type="text" name="" placeholder="Enter consultation hours"></input>
+    <input id="instructorField3" type="text" name="" placeholder="Extension number"></input>
+    <input id="instructorField4" type="text" name="" placeholder="Enter consultation hours"></input>
     </div>
     <br></br>
     <b>Acedemic Calender Copy: </b>
@@ -315,7 +315,7 @@ export default function Home() {
     At the end of this section, students will be able to: <br></br><input id="topic2OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
     </td>
     <td>
-    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    <input id="topic2GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
     </td>
   </tr>
   <tr>
@@ -324,7 +324,7 @@ export default function Home() {
     At the end of this section, students will be able to: <br></br><input id="topic3OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
     </td>
     <td>
-    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    <input id="topic3GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
     </td>
   </tr>
   <tr>
@@ -333,7 +333,7 @@ export default function Home() {
     At the end of this section, students will be able to: <br></br><input id="topic4OutcomesField" type="text" name="" placeholder="Enter learning outcomes for this topic"></input>
     </td>
     <td>
-    <input id="topic1GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
+    <input id="topic4GAField" type="text" name="" placeholder="Enter GA indictors for this topic"></input>
     </td>
   </tr>
   </tbody>
@@ -437,7 +437,7 @@ export default function Home() {
   <br></br>
   <b>Assignment Submission Locker: </b>
   <div>
-    <input id="assignmentSubmissionLockerField1" type="text" name="" placeholder="Enter locker number and location of submission locker"></input>
+    <input id="assignmentSubmissionLockerField" type="text" name="" placeholder="Enter locker number and location of submission locker"></input>
   </div>
   <br></br>
   </div>
@@ -454,14 +454,28 @@ export default function Home() {
 
 function getFields() {
   let coContents = [];
+  coContents.push(document.getElementById('yearField').value);
   coContents.push(document.getElementById('descriptionField').value);
-  coContents.push(document.getElementById('instructorField').value);
+
+  coContents.push(document.getElementById('instructorField1').value);
+  coContents.push(document.getElementById('instructorField2').value);
+  coContents.push(document.getElementById('instructorField3').value);
+  coContents.push(document.getElementById('instructorField4').value);
+
   coContents.push(document.getElementById('academicCalenderCopyField').value);
-  coContents.push(document.getElementById('contactHoursField').value);
+  
+  coContents.push(document.getElementById('contactHoursField1').value);
+  coContents.push(document.getElementById('contactHoursField2').value);
+  coContents.push(document.getElementById('contactHoursField3').value);
+  coContents.push(document.getElementById('contactHoursField4').value);
+  
   coContents.push(document.getElementById('antirequisiteField').value);
   coContents.push(document.getElementById('prerequisiteField').value);
   coContents.push(document.getElementById('corequisiteField').value);
-  coContents.push(document.getElementById('academicUnitsField').value);
+
+  coContents.push(document.getElementById('academicUnitsField1').value);
+  coContents.push(document.getElementById('academicUnitsField2').value);
+  
   coContents.push(document.getElementById('requiredTextbooksField').value);
   coContents.push(document.getElementById('otherRequiredReferencesField').value);
   coContents.push(document.getElementById('recommendedReferencesField').value);
@@ -483,12 +497,24 @@ function getFields() {
     }
   });
 
+  coContents.push(document.getElementById('topic1Field').value);
+  coContents.push(document.getElementById('topic1OutcomesField').value);
+  coContents.push(document.getElementById('topic1GAField').value);
+  coContents.push(document.getElementById('topic2Field').value);
+  coContents.push(document.getElementById('topic2OutcomesField').value);
+  coContents.push(document.getElementById('topic2GAField').value);
+  coContents.push(document.getElementById('topic3Field').value);
+  coContents.push(document.getElementById('topic3OutcomesField').value);
+  coContents.push(document.getElementById('topic3GAField').value);
+  coContents.push(document.getElementById('topic4Field').value);
+  coContents.push(document.getElementById('topic4OutcomesField').value);
+  coContents.push(document.getElementById('topic4GAField').value);
+
   coContents.push(document.getElementById('homeworkPercentField').value);
   coContents.push(document.getElementById('quizzesPercentField').value);
   coContents.push(document.getElementById('laboratoryPercentField').value);
   coContents.push(document.getElementById('midtermTestPercentField').value);
   coContents.push(document.getElementById('finalExaminationPercentField').value);
-  coContents.push(document.getElementById('evaluationField').value);
   coContents.push(document.getElementById('homeworkAssignmentsField').value);
   coContents.push(document.getElementById('quizzesField').value);
   coContents.push(document.getElementById('LaboratoryField').value);
@@ -496,6 +522,7 @@ function getFields() {
   coContents.push(document.getElementById('finalExaminationField').value);
   coContents.push(document.getElementById('lateSubmissionPolicyField').value);
   coContents.push(document.getElementById('assignmentSubmissionLockerField').value);
+  coContents.push(document.getElementById('GAIndicatorAssessmentField').value);
 
   return coContents;
 }

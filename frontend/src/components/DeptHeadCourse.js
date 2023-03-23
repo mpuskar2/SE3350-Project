@@ -53,8 +53,9 @@ export default function Home() {
 
       set(oRef, {
         approvalStatus: "approved",
+        comments: data.comments,
+        contents: data.contents,
         courseName: data.courseName,
-        filePath: data.filePath,
         modifiedTime: data.modifiedTime,
         versionNum: data.versionNum,
         whoModified: data.whoModified

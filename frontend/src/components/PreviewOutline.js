@@ -4,15 +4,17 @@ import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
+import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   //const [fieldData, setFields] = useState([]);
-  const fieldData = useRef([]);
+  const outlinesData = useRef([]);
   const needData = useRef(true);
   const navigate = useNavigate();
 
   let courseandversion = localStorage.getItem('cNameAndVer');
+  console.log(courseandversion);
   let email;
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -31,7 +33,7 @@ export default function Home() {
       onValue(ocRef, (snapshot) => {
         const data = snapshot.val();
         const fields = data.contents;
-        fieldData.current = fields;
+        outlinesData.current = fields;
         //setFields(fields);
       });
     }
@@ -42,7 +44,7 @@ export default function Home() {
       onValue(ocRef, (snapshot) => {
         const data = snapshot.val();
         const fields = data.contents;
-        fieldData.current = fields;
+        outlinesData.current = fields;
         //setFields(fields);
       });
     }
@@ -105,41 +107,41 @@ const MyDocument = () => (
 <Text style={{textAlign:'center'}}>Department of Electrical and Computer Engineering{'\n'}</Text>
 </Text>
 <Text style={styles.textBold}>
-<Text style={{textAlign:'center', fontSize:14}}>ECE XXXXA/B: Course Title</Text>
+<Text style={{textAlign:'center', fontSize:14}}>{activeCourse}: Course Title</Text>
 </Text>
 <Text style={styles.textBold}>
-<Text style={{textAlign:'center'}}>Course Outline 20YY-YY{'\n'}</Text>
+<Text style={{textAlign:'center'}}>Course Outline {outlinesData.current[0]}{'\n'}</Text>
 </Text>
 
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>Description: </Text>
-{fieldData[0]}
+{outlinesData.current[1]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold', paddingLeft:30}}>{'\n'}Instructor:	</Text>
-{'\t'}    Dr. Name, P.Eng.
-{'\n'} {'\t                   '}    TEB XXX, 519-661-2111 ext. XXXXX, UWO e-mail address as hyperlink
-{'\n'} {'\t                   '}    Consultation hours: {fieldData.current[0]}
+{'\t'}    {outlinesData.current[2]}
+{'\n'} {'\t                   '}    {outlinesData.current[3]}, 519-661-2111 ext. {outlinesData.current[4]}, UWO e-mail address as hyperlink
+{'\n'} {'\t                   '}    Consultation hours: {outlinesData.current[5]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Academic Calendar Copy:	</Text>
-
+{outlinesData.current[6]}
 </Text> 
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Contact Hours:	</Text>
-X lecture hours, Y laboratory hours, Z tutorial hours, 0.5 course.
+{outlinesData.current[7]} lecture hours, {outlinesData.current[8]} laboratory hours, {outlinesData.current[9]} tutorial hours, {outlinesData.current[10]} course.
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Antirequisite:	</Text>
- 
+{outlinesData.current[11]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Prerequisites:	</Text>
-
+{outlinesData.current[12]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Co-requisite:	</Text>
-
+{outlinesData.current[13]}
 </Text>
 <Text style={styles.textRegular}>
 Unless you have either the requisites for this course or written special permission from your Dean to enroll in it, you will be removed from this course and it will be deleted from your record. This decision may not be appealed. You will receive no adjustment to your fees in the event that you are dropped from a course for failing to have the necessary prerequisites.
@@ -147,29 +149,29 @@ Unless you have either the requisites for this course or written special permiss
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}CEAB Academic Units:	</Text>
-Engineering Science X%, Engineering Design Y%.
+Engineering Science {outlinesData.current[14]}%, Engineering Design {outlinesData.current[15]}%.
 
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Required Textbook:	</Text>
-
+{outlinesData.current[16]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Other Required References:	</Text>
-
+{outlinesData.current[17]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Recommended References:	</Text>
- 
+{outlinesData.current[18]}
 </Text>
 <Text style={styles.textBold}>
 {'\n'}General Learning Objectives (CEAB Graduate Attributes)
 </Text>
 
-Knowledge Base	x	Use of Engineering Tools	x	Impact on Society and the Environment	x
-Problem Analysis	x	Individual and Team Work	x	Ethics and Equity	x
-Investigation	x	Communication Skills	x	Economics and Project Management	x
-Design	x	Professionalism	x	Life-Long Learning	x
+Knowledge Base	{outlinesData.current[19]}	Use of Engineering Tools	{outlinesData.current[20]}	Impact on Society and the Environment	{outlinesData.current[21]}
+Problem Analysis	{outlinesData.current[22]}	Individual and Team Work	{outlinesData.current[23]}	Ethics and Equity	{outlinesData.current[24]}
+Investigation	{outlinesData.current[25]}	Communication Skills	{outlinesData.current[26]}	Economics and Project Management	{outlinesData.current[27]}
+Design	{outlinesData.current[28]}	Professionalism	{outlinesData.current[29]}	Life-Long Learning	{outlinesData.current[30]}
 
 <Text style={styles.textRegular}>
 Notation: where x be I: Introductory, D: Intermediate, A: Advanced, or empty. I – The instructor will introduce the topic at the level required.  It is not necessary for the student to have seen the material before. D – There may be a reminder or review, but the student is expected to have seen and been tested on the material before taking the course. A – It is expected that the student can apply the knowledge without prompting (e.g. no review).

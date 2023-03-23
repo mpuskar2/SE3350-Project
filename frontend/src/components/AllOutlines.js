@@ -12,16 +12,11 @@ export default function Home() {
 
   const outlinesData = useRef([]);
   const needData = useRef(true);
-
-  const [isProf, setIsProf] = useState(false);
   const navigate = useNavigate();
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){
       setUser(currentUser);
-      if (currentUser.displayName === "P") {
-        setIsProf(true);
-      }
     } 
     else navigate("/")
   });
@@ -66,44 +61,36 @@ export default function Home() {
     }
   });
 
+  function setCAV(courseName, versionNum) {
+    localStorage.setItem('cNameAndVer', `${courseName}v${versionNum}`);
+  }
+
   function GetOutlines() {
     let arr = [];
     Object.values(outlinesData.current).forEach(e => {
-      if (isProf) {
-        if (e.approvalStatus === "approved") {
-          let div = (
-            <div>
-            <p>Version Num: {e.versionNum}</p>
-            <p>Modified By: {e.whoModified}</p>
-            <p>Modified Date: {e.modifiedTime}</p>
-            <p>Approval Status: {e.approvalStatus}</p>
-            <Link to="/previewoutline">
-              <button onClick={localStorage.setItem('cNameAndVer', `${e.courseName}v${e.versionNum}`)}>Preview</button>
-            </Link>
-            <PDFDownloadLink document={<MyDocument />} fileName={"courseOutline.pdf"}>
-                  {({loading}) =>
-                    loading ? (
-                      <button>Loading Document...</button>
-                    ) : (
-                      <button>Download</button>
-                    )
-                  }
-            </PDFDownloadLink>
-          </div>
-          ); 
-          arr.push(div);
+      let div = (
+        <div>
+        <p>Version Num: {e.versionNum}</p>
+        <p>Modified By: {e.whoModified}</p>
+        <p>Modified Date: {e.modifiedTime}</p>
+        <p>Approval Status: {e.approvalStatus}</p>
+        <Link to="/previewoutline">
+          <button onClick={() => {setCAV(e.courseName, e.versionNum)}}>Preview</button>
+        </Link>
+        {e.approvalStatus === "approved" && 
+          <PDFDownloadLink document={<MyDocument />} fileName={"courseOutline.pdf"}>
+            {({loading}) =>
+              loading ? (
+                <button>Loading Document...</button>
+                ) : (
+                <button>Download</button>
+              )
+            }
+          </PDFDownloadLink>
         }
-      }
-      else {
-        arr.push(
-          <div>
-            <p>Version Num: {e.versionNum}</p>
-            <p>Modified By: {e.whoModified}</p>
-            <p>Modified Date: {e.modifiedTime}</p>
-            <p>Approval Status: {e.approvalStatus}</p>
-          </div>
-        );
-      }
+      </div>
+      );
+      arr.push(div);
     });
     return (
       <ul>{arr}</ul>
