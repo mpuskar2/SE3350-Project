@@ -1,16 +1,16 @@
 import Login from './components/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
-import Home from './components/Home'
-import AdminHome from './components/AdminHome'
-import AdminCourse from './components/AdminCourse'
-import ProfessorHome from './components/ProfessorHome'
-import DeptHeadHome from './components/DeptHeadHome'
-import DeptHeadCourse from './components/DeptHeadCourse'
-import ProfessorCourse from './components/ProfessorCourse'
-import AllOutlines from './components/AllOutlines'
-import CourseOutline from './components/CourseOutline'
-import EditOutline from './components/EditOutline'
+import Home from './components/Home';
+import AdminHome from './components/AdminHome';
+import AdminCourse from './components/AdminCourse';
+import ProfessorHome from './components/ProfessorHome';
+import DeptHeadHome from './components/DeptHeadHome';
+import DeptHeadCourse from './components/DeptHeadCourse';
+import ProfessorCourse from './components/ProfessorCourse';
+import AllOutlines from './components/AllOutlines';
+import CourseOutline from './components/CourseOutline';
+import PreviewOutline from './components/PreviewOutline';
 
 
 function App() {
@@ -28,7 +28,8 @@ function App() {
       <Route exact path="/deptheadcourse" element={<DeptHeadCourse/>}/>
       <Route exact path="/alloutlines" element={<AllOutlines/>}/>
       <Route exact path="/courseoutline" element={<CourseOutline/>}/>
-      <Route exact path="/editoutline" element={<EditOutline/>}/>
+      <Route exact path="/previewoutline" element={<PreviewOutline/>}/>
+
     </Routes>
     </BrowserRouter>
   )

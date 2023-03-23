@@ -1,20 +1,32 @@
 body
 {
   font-family: 'Arial';
+  color: white;
+  background: linear-gradient(to bottom, #1e1a46, #443e82, #46466f);
+  min-height: 100vh;
 }
 
 div.login 
 {
+  width: 350px;
+	height: 500px;
+	background: linear-gradient(to bottom, #1f1954, #3f3983, #6565a0);
+	overflow: hidden;
   position: fixed;
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
 }
 
 ul.loginList
 {
+  margin-top: 30%;
   list-style-type: none;
   display: inline-block;
+  align-items: center;
+  justify-content: center;
 }
 
 li.listElemText
@@ -27,4 +39,31 @@ li.listElemBtn
 {
   margin: 10px;
   text-align: center;
+}
+
+h2.loginHeader
+{
+  text-align: center;
+}
+
+span.transition
+{
+  font-size: medium;
+}
+
+button.tBtn
+{
+  background: none!important;
+  border: none;
+  margin: 10px;
+  padding: 0!important;
+  color: white;
+  cursor: pointer;
+  font-size: large;
+  align-items: center;
+}
+
+.hidden
+{
+  display: none;
 }
