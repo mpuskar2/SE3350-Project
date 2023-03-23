@@ -7,7 +7,8 @@ import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
-  const [fieldData, setFields] = useState([]);
+  //const [fieldData, setFields] = useState([]);
+  const fieldData = useRef([]);
   const needData = useRef(true);
   const navigate = useNavigate();
 
@@ -30,7 +31,8 @@ export default function Home() {
       onValue(ocRef, (snapshot) => {
         const data = snapshot.val();
         const fields = data.contents;
-        setFields(fields);
+        fieldData.current = fields;
+        //setFields(fields);
       });
     }
     else {
@@ -40,7 +42,8 @@ export default function Home() {
       onValue(ocRef, (snapshot) => {
         const data = snapshot.val();
         const fields = data.contents;
-        setFields(fields);
+        fieldData.current = fields;
+        //setFields(fields);
       });
     }
   });
@@ -116,7 +119,7 @@ const MyDocument = () => (
 <Text style={{fontFamily:'Times-Bold', paddingLeft:30}}>{'\n'}Instructor:	</Text>
 {'\t'}    Dr. Name, P.Eng.
 {'\n'} {'\t                   '}    TEB XXX, 519-661-2111 ext. XXXXX, UWO e-mail address as hyperlink
-{'\n'} {'\t                   '}    Consultation hours:
+{'\n'} {'\t                   '}    Consultation hours: {fieldData.current[0]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Academic Calendar Copy:	</Text>

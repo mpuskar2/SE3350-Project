@@ -7,12 +7,10 @@ import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@
 import { activeCourse } from './ProfessorHome';
 
 export default function Home() {
-  let shethey = true;
   const [user, setUser] = useState(undefined);
   //const [outlinesData, setData] = useState([]);
 
   const outlinesData = useRef([]);
-  //const [isLoading, setIsLoading] = useState(true);
   const needData = useRef(true);
 
   const [isProf, setIsProf] = useState(false);
@@ -31,7 +29,6 @@ export default function Home() {
   useEffect(() => {
     if (needData.current) {
       needData.current = false;
-      console.log('hello');
       const db = getDatabase();
       const oRef = ref(db, 'Outlines/');
     
@@ -46,13 +43,10 @@ export default function Home() {
         });
         outlinesData.current = arr;
         //needData.current = false;
-        //setIsLoading(false);
         //setData(arr);
       });
-      
     }
     else {
-      console.log('bye');
       const db = getDatabase();
       const oRef = ref(db, 'Outlines/');
     
@@ -67,7 +61,6 @@ export default function Home() {
         });
         outlinesData.current = arr;
         //needData.current = false;
-        //setIsLoading(false);
         //setData(arr);
       });
     }
