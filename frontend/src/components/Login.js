@@ -41,6 +41,7 @@ export default function Login() {
 
   return (
     <div className="login">
+      <h2 className='loginHeader'>Log In</h2>
       <ul className="loginList">
         <li className="listElemText">
         <label>Email </label>

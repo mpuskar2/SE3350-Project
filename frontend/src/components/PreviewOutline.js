@@ -2,14 +2,16 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
 import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
+  const [isAdmin, setIsAdmin] = useState(false);
   //const [fieldData, setFields] = useState([]);
   const outlinesData = useRef([]);
+  const commentData = useRef('');
   const needData = useRef(true);
   const navigate = useNavigate();
 
@@ -20,6 +22,9 @@ export default function Home() {
     if (currentUser) {
       setUser(currentUser);
       email = currentUser.email;
+      if (currentUser.displayName === "A") {
+        setIsAdmin(true);
+      }
     }
     else navigate("/")
   });
@@ -34,6 +39,7 @@ export default function Home() {
         const data = snapshot.val();
         const fields = data.contents;
         outlinesData.current = fields;
+        commentData.current = data.comments;
         //setFields(fields);
       });
     }
@@ -45,10 +51,30 @@ export default function Home() {
         const data = snapshot.val();
         const fields = data.contents;
         outlinesData.current = fields;
+        commentData.current = data.comments;
         //setFields(fields);
       });
     }
   });
+
+  function addComment(id, comment) {
+    const db = getDatabase();
+    const oRef = ref(db, 'Outlines/' + id);
+
+    onValue(oRef, (snapshot) => {
+      const data = snapshot.val();
+
+      set(oRef, {
+        approvalStatus: data.approvalStatus,
+        comments: comment,
+        contents: data.contents,
+        courseName: data.courseName,
+        modifiedTime: data.modifiedTime,
+        versionNum: data.versionNum,
+        whoModified: data.whoModified
+      });
+    });
+  }
   
 // stylesheet for PDF
 Font.register({ family: 'Times-Roman', src: "/C:/Windows/Fonts/Times New Roman" });
@@ -322,9 +348,20 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
           <button>Back</button>
         </Link>
       </div>
+      <div id='com'>
+        <label>Comments:</label><br></br>
+        {commentData.current}
+      </div>
       <PDFViewer className='pdf'>
             <MyDocument />
         </PDFViewer>
+        {isAdmin && <>
+          <label>Add Comments:</label> <br></br>
+          <textarea id='comments' rows='20' cols='60'></textarea> <br></br>
+          <button onClick={() => {
+            addComment(courseandversion, document.getElementById('comments').value);
+            }}>Add</button>
+        </>}
     </>
   )
 }

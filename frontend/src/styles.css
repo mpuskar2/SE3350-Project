@@ -22,7 +22,7 @@ div.login
 
 ul.loginList
 {
-  margin-top: 30%;
+  margin-top: 15%;
   list-style-type: none;
   display: inline-block;
   align-items: center;
@@ -49,6 +49,7 @@ li.listElemBtn
 h2.loginHeader
 {
   text-align: center;
+  margin-top: 10%;
 }
 
 span.transition

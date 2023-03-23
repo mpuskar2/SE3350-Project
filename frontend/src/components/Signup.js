@@ -47,6 +47,7 @@ export default function Signup() {
 
   return (
     <div className="login">
+      <h2 className='loginHeader'>Sign Up</h2>
       <ul className="loginList">
         <li className="listElemText">
         <label>Email </label>
@@ -60,7 +61,7 @@ export default function Signup() {
         <input id="p" type="radio" name="buttons" value={"P"} onChange={(e) => setType(e.target.value)}></input>
         <label htmlFor="p">Professor </label>
         <input id="a" type="radio" name="buttons" value={"A"} onChange={(e) => setType(e.target.value)}></input>
-        <label htmlFor="a">Administrator </label>
+        <label htmlFor="a">Administrator </label> <br></br>
         <input id="d" type="radio" name="buttons" value={"D"} onChange={(e) => setType(e.target.value)}></input>
         <label htmlFor="d">Department Chair</label>
         </li>
