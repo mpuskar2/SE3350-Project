@@ -152,6 +152,60 @@ const styles = StyleSheet.create({
     fontSize:12,
     margin:0,
     padding:0,
+  },
+  table: { 
+    display: "table", 
+    width: "100%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderRightWidth: 0, 
+    borderBottomWidth: 0 
+  }, 
+  table1: { 
+    display: "table", 
+    width: "40%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderRightWidth: 0, 
+    borderBottomWidth: 0, 
+  },
+  tableRow: { 
+    margin: "auto", 
+    flexDirection: "row" 
+  }, 
+  tableCol: { 
+    width: "29.3%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderLeftWidth: 0, 
+    borderTopWidth: 0 
+  }, 
+  tableColx: { 
+    width: "4%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderLeftWidth: 0, 
+    borderTopWidth: 0 
+  }, 
+  tableCol1: { 
+    width: "70%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderLeftWidth: 0, 
+    borderTopWidth: 0 
+  }, 
+  tableCol2: { 
+    width: "30%", 
+    borderStyle: "solid", 
+    borderWidth: 1, 
+    borderLeftWidth: 0, 
+    borderTopWidth: 0 
+  }, 
+  tableCell: { 
+    margin: "5", 
+    marginTop: 5, 
+    fontFamily:'Times-Roman',
+    fontSize:12,
   }
 });
 
@@ -234,14 +288,150 @@ Engineering Science X%, Engineering Design Y%.
 {'\n'}General Learning Objectives (CEAB Graduate Attributes)
 </Text>
 
+
+<View style={styles.table}> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Knowledge Base</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Use of Engineering Tools</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Impact on Society and Environment</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          
+      
+        </View>
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Problem Analysis</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>Individual and Team Work</Text> 
+          </View>
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Ethics and Equity</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+        </View> 
+        
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Investigation</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Communication Skills</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Econmics and Project Management</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+        </View>
+        
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Design</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Professionalism</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+          <View style={styles.tableCol}> 
+            <Text style={styles.tableCell}>Life-Long Learning</Text> 
+          </View> 
+          <View style={styles.tableColx}> 
+            <Text style={styles.tableCell}>x</Text> 
+          </View> 
+        </View>
+        
+      </View>
+
+
 Knowledge Base	x	Use of Engineering Tools	x	Impact on Society and the Environment	x
 Problem Analysis	x	Individual and Team Work	x	Ethics and Equity	x
 Investigation	x	Communication Skills	x	Economics and Project Management	x
 Design	x	Professionalism	x	Life-Long Learning	x
 
 <Text style={styles.textRegular}>
-Notation: where x be I: Introductory, D: Intermediate, A: Advanced, or empty. I – The instructor will introduce the topic at the level required.  It is not necessary for the student to have seen the material before. D – There may be a reminder or review, but the student is expected to have seen and been tested on the material before taking the course. A – It is expected that the student can apply the knowledge without prompting (e.g. no review).
+Notation: where x be I: Introductory, D: Intermediate, A: Advanced, or empty. I – The instructor will introduce the topic at the level required.  It is not necessary for the student to have seen the material before. D – There may be a reminder or review, but the student is expected to have seen and been tested on the material before taking the course. A – It is expected that the student can apply the knowledge without prompting (e.g. no review). {'\n'}
+{'\n'}
 </Text>
+
+<View style={styles.table}> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Course Topics and Specific Leaning Outcomes</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}>CEAB Graduate Attribute Indicators</Text> 
+          </View> 
+          
+        </View>
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>1. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> </Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>2. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> </Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>3. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> </Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>4. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> </Text> 
+          </View>        
+        </View> 
+
+      </View>
 
 Course Topics and Specific Learning Outcomes	CEAB Graduate Attributes Indicators
 1.	Topic 1	
@@ -264,6 +454,61 @@ b.
 <Text style={styles.textBold}>
 {'\n'}Evaluation
 </Text>
+
+
+<View style={styles.table1}> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Course Component</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}>Weight</Text> 
+          </View> 
+          
+        </View>
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Homework Assignments</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> %</Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Quizzes</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> %</Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Laboratory</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> %</Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Midterm Test</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> %</Text> 
+          </View>        
+        </View> 
+        <View style={styles.tableRow}> 
+          <View style={styles.tableCol1}> 
+            <Text style={styles.tableCell}>Final Examination</Text> 
+          </View> 
+          <View style={styles.tableCol2}> 
+            <Text style={styles.tableCell}> %</Text> 
+          </View>        
+        </View> 
+      </View>
+
+
 Course Component	Weight
 Homework Assignments	%
 Quizzes	%

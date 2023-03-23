@@ -41,6 +41,11 @@ li.listElemBtn
   text-align: center;
 }
 
+.pdf {
+  width: 100%;
+  height: 1440px;
+}
+
 h2.loginHeader
 {
   text-align: center;
