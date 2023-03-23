@@ -23,6 +23,9 @@ let isProf = false;
     else navigate("/")
   });
 
+  const activeCourse = localStorage.getItem("courseName");
+
+
   function getOutlines() {
     document.getElementById("load").disabled = true;
     

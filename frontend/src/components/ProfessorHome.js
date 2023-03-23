@@ -20,7 +20,6 @@ export default function Home() {
 
   const activeClass = ((setActive) => {
     activeCourse = setActive;
-    // window.name = activeCourse;
     localStorage.setItem("courseName", activeCourse);
   });
 
