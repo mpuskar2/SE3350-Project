@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -13,6 +12,8 @@ export default function Home() {
     else navigate("/")
   });
 
+  const currentCourse = localStorage.getItem("courseName");
+  
   const download = ((url) => {
     const a = document.createElement('a')
     a.href = url
@@ -25,7 +26,6 @@ export default function Home() {
     navigate("/alloutlines");
   });
 
-
   return (
     <>
       <div>Home {user?.email}
@@ -37,7 +37,7 @@ export default function Home() {
         </Link>
       </div>
       <div>
-        <h3>{activeCourse}</h3>
+        <h3>{currentCourse}</h3>
         <h5>Select option below</h5>
       </div>
       <div>

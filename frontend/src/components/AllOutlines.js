@@ -4,7 +4,6 @@ import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
-import { activeCourse } from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -13,6 +12,8 @@ export default function Home() {
   const outlinesData = useRef([]);
   const needData = useRef(true);
   const navigate = useNavigate();
+
+  const activeCourse = localStorage.getItem("courseName");
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){

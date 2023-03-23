@@ -20,9 +20,7 @@ export default function Home() {
 
   const activeClass = ((setActive) => {
     activeCourse = setActive;
-    if(activeClass == null){
-      activeClass = "no class";
-    }
+    localStorage.setItem("courseName", activeCourse);
   });
 
   const nextPage = ((className) => {
