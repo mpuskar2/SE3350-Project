@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, set, onValue, increment, update } from "firebase/database";
-import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
+  const activeCourse = localStorage.getItem("courseName");
 
   let email;
   onAuthStateChanged(auth, (currentUser) => {
@@ -446,7 +446,7 @@ export default function Home() {
         <input id="GAIndicatorAssessmentField" type="text" name="" placeholder=" "></input>
       </div>
       <div>
-        <button onClick={() => updateOutline("SE3350", email)}>Submit</button>
+        <button onClick={() => updateOutline(activeCourse, email)}>Submit</button>
       </div>
     </>
   )
@@ -564,4 +564,6 @@ function updateOutline(id, email) {
       contents: coContents
     });
   });
+
+  alert("New outline version successfully added");
 }

@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-export var activeCourse;
-
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
@@ -19,8 +17,7 @@ export default function Home() {
   });
 
   const activeClass = ((setActive) => {
-    activeCourse = setActive;
-    localStorage.setItem("courseName", activeCourse);
+    localStorage.setItem("courseName", setActive);
   });
 
   const nextPage = ((className) => {
