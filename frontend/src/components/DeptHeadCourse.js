@@ -13,6 +13,8 @@ export default function Home() {
     else navigate("/")
   });
 
+  const currentCourse = localStorage.getItem("courseName");
+
   return (
     <>
       <div>Home {user?.email}
@@ -24,7 +26,7 @@ export default function Home() {
         </Link>
       </div>
       <div>
-        <h3>COURSE NAME HERE</h3>
+        <h3>Options for {currentCourse}</h3>
       </div>
       <div>
         <h5>Select Option Below</h5>
