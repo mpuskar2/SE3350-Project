@@ -3,23 +3,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue, set } from "firebase/database";
-import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, PDFViewer, PDFDownloadLink, Font } from '@react-pdf/renderer';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const [isAdmin, setIsAdmin] = useState(false);
   const outlinesData = useRef([]);
   const commentData = useRef('');
+  const approved = useRef('');
+  const whoModified = useRef('');
   const needData = useRef(true);
   const navigate = useNavigate();
   const activeCourse = localStorage.getItem("courseName");
   const courseandversion = localStorage.getItem('cNameAndVer');
 
-  let email;
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       setUser(currentUser);
-      email = currentUser.email;
       if (currentUser.displayName === "A") {
         setIsAdmin(true);
       }
@@ -38,6 +38,8 @@ export default function Home() {
         const fields = data.contents;
         outlinesData.current = fields;
         commentData.current = data.comments;
+        approved.current = data.approvalStatus;
+        whoModified.current = data.whoModified;
       });
     }
     else {
@@ -49,6 +51,8 @@ export default function Home() {
         const fields = data.contents;
         outlinesData.current = fields;
         commentData.current = data.comments;
+        approved.current = data.approvalStatus;
+        whoModified.current = data.whoModified;
       });
     }
   });
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
     padding:0,
   },
   viewer: {
-    width: window.innerWidth, //the pdf viewer will take up all of the width and height
+    width: window.innerWidth, // The pdf viewer will take up all of the width and height
     height: window.innerHeight,
   },
   table: { 
@@ -558,6 +562,17 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
         <label>Comments:</label><br></br>
         {commentData.current}
       </div>
+      {approved.current === "approved" && 
+          <PDFDownloadLink document={<MyDocument />} fileName={"courseOutline.pdf"}>
+            {({loading}) =>
+              loading ? (
+                <button>Loading Document...</button>
+                ) : (
+                <button>Download</button>
+              )
+            }
+          </PDFDownloadLink>
+        }
       <PDFViewer className='pdf'>
             <MyDocument />
         </PDFViewer>

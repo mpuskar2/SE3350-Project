@@ -1,7 +1,6 @@
 import Login from './components/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
-import Home from './components/Home';
 import AdminHome from './components/AdminHome';
 import AdminCourse from './components/AdminCourse';
 import ProfessorHome from './components/ProfessorHome';
@@ -18,7 +17,6 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Login/>}/>
       <Route exact path="/signup" element={<Signup/>}/>
-      <Route exact path="/home" element={<Home/>}/>
       <Route exact path="/adminhome" element={<AdminHome/>}/>
       <Route exact path="/admincourse" element={<AdminCourse/>}/>
       <Route exact path="/professorhome" element={<ProfessorHome/>}/>
