@@ -487,12 +487,17 @@ function getFields() {
     let notChecked = 0;
     for (let radio of value) {
       if (radio.checked) {
-        coContents.push(radio.value);
+        if (radio.value === 'Empty') {
+          coContents.push('');
+        }
+        else {
+          coContents.push(radio.value);
+        }
       } else {
         notChecked++;
       }
       if (notChecked === 4) {
-        coContents.push('Empty');
+        coContents.push('');
       }
     }
   });
