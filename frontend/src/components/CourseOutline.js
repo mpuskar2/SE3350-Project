@@ -556,12 +556,12 @@ function updateOutline(id, email) {
     const oRef = ref(db, `Outlines/${id}v${data.count}`);
     set(oRef, {
       approvalStatus: "",
+      comments: "",
+      contents: coContents,
       courseName: id,
-      filePath: "",
       modifiedTime: dateTime,
       versionNum: data.count,
-      whoModified: email,
-      contents: coContents
+      whoModified: email
     });
   });
 
