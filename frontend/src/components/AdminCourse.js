@@ -13,13 +13,15 @@ export default function Home() {
     else navigate("/")
   });
 
+  const currentCourse = localStorage.getItem("courseName");
+
   return (
     <>
       <div>Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
-        <h3>COURSE NAME HERE</h3>
+        <h3>Options for {currentCourse}</h3>
       </div>
       <div>
         <h5>Select Option Below</h5>
@@ -30,7 +32,7 @@ export default function Home() {
             Name:
             <input type="text" id="instructorName" placeholder="Enter instructor name"/>
           </label>
-          <input type="button" value="Assign Professor" onClick={() => assignCourse("SE3350")}></input>
+          <input type="button" value="Assign Professor" onClick={() => assignCourse(currentCourse)}></input>
         </form>   
       </div>
       <div>
