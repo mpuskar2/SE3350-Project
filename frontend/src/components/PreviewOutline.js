@@ -4,19 +4,17 @@ import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
-import {activeCourse} from './ProfessorHome';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const [isAdmin, setIsAdmin] = useState(false);
-  //const [fieldData, setFields] = useState([]);
   const outlinesData = useRef([]);
   const commentData = useRef('');
   const needData = useRef(true);
   const navigate = useNavigate();
+  const activeCourse = localStorage.getItem("courseName");
+  const courseandversion = localStorage.getItem('cNameAndVer');
 
-  let courseandversion = localStorage.getItem('cNameAndVer');
-  console.log(courseandversion);
   let email;
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -40,7 +38,6 @@ export default function Home() {
         const fields = data.contents;
         outlinesData.current = fields;
         commentData.current = data.comments;
-        //setFields(fields);
       });
     }
     else {
@@ -52,7 +49,6 @@ export default function Home() {
         const fields = data.contents;
         outlinesData.current = fields;
         commentData.current = data.comments;
-        //setFields(fields);
       });
     }
   });
@@ -255,21 +251,20 @@ Engineering Science {outlinesData.current[14]}%, Engineering Design {outlinesDat
             <Text style={styles.tableCell}>Knowledge Base</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[19]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Use of Engineering Tools</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[20]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Impact on Society and Environment</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[21]}</Text> 
           </View> 
-          
       
         </View>
         <View style={styles.tableRow}> 
@@ -277,19 +272,19 @@ Engineering Science {outlinesData.current[14]}%, Engineering Design {outlinesDat
             <Text style={styles.tableCell}>Problem Analysis</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[22]}</Text> 
           </View> 
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>Individual and Team Work</Text> 
           </View>
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[23]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Ethics and Equity</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[24]}</Text> 
           </View> 
         </View> 
         
@@ -298,19 +293,19 @@ Engineering Science {outlinesData.current[14]}%, Engineering Design {outlinesDat
             <Text style={styles.tableCell}>Investigation</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[25]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Communication Skills</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[26]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Econmics and Project Management</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[27]}</Text> 
           </View> 
         </View>
         
@@ -319,26 +314,23 @@ Engineering Science {outlinesData.current[14]}%, Engineering Design {outlinesDat
             <Text style={styles.tableCell}>Design</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[28]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Professionalism</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[29]}</Text> 
           </View> 
           <View style={styles.tableCol}> 
             <Text style={styles.tableCell}>Life-Long Learning</Text> 
           </View> 
           <View style={styles.tableColx}> 
-            <Text style={styles.tableCell}>x</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[30]}</Text> 
           </View> 
         </View>
         
       </View>
-
-
-
 
 <Text style={styles.textRegular}>
 Notation: where x be I: Introductory, D: Intermediate, A: Advanced, or empty. I – The instructor will introduce the topic at the level required.  It is not necessary for the student to have seen the material before. D – There may be a reminder or review, but the student is expected to have seen and been tested on the material before taking the course. A – It is expected that the student can apply the knowledge without prompting (e.g. no review). {'\n'}
@@ -357,56 +349,38 @@ Notation: where x be I: Introductory, D: Intermediate, A: Advanced, or empty. I 
         </View>
         <View style={styles.tableRow}> 
           <View style={styles.tableCol1}> 
-            <Text style={styles.tableCell}>1. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+            <Text style={styles.tableCell}>1. {outlinesData.current[31]}{'\n'}At the end of this section, students will be able to:{'\n'}{outlinesData.current[32]} </Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> </Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[33]} </Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
           <View style={styles.tableCol1}> 
-            <Text style={styles.tableCell}>2. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+            <Text style={styles.tableCell}>2. {outlinesData.current[34]}{'\n'}At the end of this section, students will be able to:{'\n'}{outlinesData.current[35]} </Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> </Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[36]} </Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
           <View style={styles.tableCol1}> 
-            <Text style={styles.tableCell}>3. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+            <Text style={styles.tableCell}>3. {outlinesData.current[37]}{'\n'}At the end of this section, students will be able to:{'\n'}{outlinesData.current[38]} </Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> </Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[39]} </Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
           <View style={styles.tableCol1}> 
-            <Text style={styles.tableCell}>4. {'\n'}At the end of this section, students will be able to:{'\n'} </Text> 
+            <Text style={styles.tableCell}>4. {outlinesData.current[40]}{'\n'}At the end of this section, students will be able to:{'\n'}{outlinesData.current[41]} </Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> </Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[42]} </Text> 
           </View>        
         </View> 
 
-      </View>
-
-Course Topics and Specific Learning Outcomes	CEAB Graduate Attributes Indicators
-1.	Topic 1	
-	At the end of this section, students will be able to:	
-a.	 	 
-b.	 	 
-2.	Topic 1	
-	At the end of this section, students will be able to:	
-a.		
-b.		
-3.	Topic 1	
-	At the end of this section, students will be able to:	
-a.		
-b.		
-4.	Topic 1	
-	At the end of this section, students will be able to:	
-a.		
-b.	  	
+      </View>  	
 
 <Text style={styles.textBold}>
 {'\n'}Evaluation
@@ -428,7 +402,7 @@ b.
             <Text style={styles.tableCell}>Homework Assignments</Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> %</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[43]}%</Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
@@ -436,7 +410,7 @@ b.
             <Text style={styles.tableCell}>Quizzes</Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> %</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[44]}%</Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
@@ -444,7 +418,7 @@ b.
             <Text style={styles.tableCell}>Laboratory</Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> %</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[45]}%</Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
@@ -452,7 +426,7 @@ b.
             <Text style={styles.tableCell}>Midterm Test</Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> %</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[46]}%</Text> 
           </View>        
         </View> 
         <View style={styles.tableRow}> 
@@ -460,51 +434,41 @@ b.
             <Text style={styles.tableCell}>Final Examination</Text> 
           </View> 
           <View style={styles.tableCol2}> 
-            <Text style={styles.tableCell}> %</Text> 
+            <Text style={styles.tableCell}>{outlinesData.current[47]}%</Text> 
           </View>        
         </View> 
       </View>
-
-
-Course Component	Weight
-Homework Assignments	%
-Quizzes	%
-Laboratory	%
-Midterm Test	%
-Final Examination	50%
 
 <Text style={styles.textRegular}>
 To obtain a passing grade in the course, a mark of 50% or more must be achieved on the final examination as well as on the laboratory. A final examination or laboratory mark LESS THAN 50% will result in a final course grade of 48% or less.
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Homework Assignments:	</Text> 
-
+{outlinesData.current[48]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Quizzes:	</Text> 
-
+{outlinesData.current[49]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Laboratory:	</Text> 
-
+{outlinesData.current[50]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Midterm Test:	</Text>
-
+{outlinesData.current[51]}
 </Text>
 <Text style={styles.textRegular}>
-<Text style={{fontFamily:'Times-Bold'}}>{'\n'}Final Examination:	</Text>
-The final examination will be take place during the regular examination period. 
-
+<Text style={{fontFamily:'Times-Bold'}}>{'\n'}Final Examination:	</Text> 
+{outlinesData.current[52]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Late Submission Policy:	</Text>
-
+{outlinesData.current[53]}
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Assignment Submission Locker:	</Text>
-Locker XYZ located on the second floor of TEB.
-
+Locker {outlinesData.current[54]} located on the second floor of TEB.
 </Text>
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold'}}>{'\n'}Use of English:	</Text>
@@ -597,6 +561,10 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
       <PDFViewer className='pdf'>
             <MyDocument />
         </PDFViewer>
+        <div>
+          <label>GA Indicator Assessment:</label>
+          {outlinesData.current[55]}
+        </div>
         {isAdmin && <>
           <label>Add Comments:</label> <br></br>
           <textarea id='comments' rows='20' cols='60'></textarea> <br></br>
