@@ -32,36 +32,36 @@ export default function Home() {
         <h5>Select Option Below</h5>
       </div>
       <div>
-        <button>Add Comments</button>
+        <form>
+          <label>
+            Name:
+            <input type="text" id="instructorName" placeholder="Enter instructor name"/>
+          </label>
+          <input type="button" value="Assign Professor" onClick={() => assignCourse(currentCourse)}></input>
+        </form>   
       </div>
       <div>
-        <button>Return to Instructor</button>
-      </div>
-      <div>
-        <button onClick={() => approve("SE3350v1")}>Approve</button>
-      </div>
-      <div>
-        <button>View Previous Outlines</button>
+        <Link to="/alloutlines">
+          <button>View Previous Outlines</button>
+        </Link>
       </div>
     </>
   )
 
-  function approve(id) {
+  function assignCourse(id) {
+    var input = document.getElementById("instructorName").value;
     const db = getDatabase();
-    const oRef = ref(db, 'Outlines/' + id);
-
-    onValue(oRef, (snapshot) => {
-      const data = snapshot.val();
-
-      set(oRef, {
-        approvalStatus: "approved",
-        comments: data.comments,
-        contents: data.contents,
-        courseName: data.courseName,
-        modifiedTime: data.modifiedTime,
-        versionNum: data.versionNum,
-        whoModified: data.whoModified
+      const oRef = ref(db, 'Courses/' + id);
+  
+      onValue(oRef, (snapshot) => {
+        const data = snapshot.val();
+  
+        set(oRef, {
+          courseName: data.courseName,
+          professor: input,
+        });
       });
-    });
+  
+      alert("You have successfully assigned this course to " + input + ".");
   }
 }

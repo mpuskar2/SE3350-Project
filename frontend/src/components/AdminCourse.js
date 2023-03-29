@@ -43,8 +43,7 @@ export default function Home() {
     </>
   )
 
-  function assignCourse(id)
-  {
+  function assignCourse(id) {
   var input = document.getElementById("instructorName").value;
   const db = getDatabase();
     const oRef = ref(db, 'Courses/' + id);
@@ -60,5 +59,4 @@ export default function Home() {
 
     alert("You have successfully assigned this course to " + input + ".");
   }
-
 }

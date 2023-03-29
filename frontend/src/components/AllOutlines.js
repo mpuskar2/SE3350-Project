@@ -7,7 +7,9 @@ import { getDatabase, ref, onValue } from "firebase/database";
 export default function Home() {
   const [user, setUser] = useState(undefined);
   //const [outlinesData, setData] = useState([]);
-
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isDeptHead, setIsDeptHead] = useState(false);
+  const [isProf, setIsProf] = useState(false);
   const outlinesData = useRef([]);
   const needData = useRef(true);
   const navigate = useNavigate();
@@ -17,6 +19,13 @@ export default function Home() {
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){
       setUser(currentUser);
+      if (currentUser.displayName === "A") {
+        setIsAdmin(true);
+      } else if (currentUser.displayName === "D") {
+        setIsDeptHead(true);
+      } else if (currentUser.displayName === "P") {
+        setIsProf(true);
+      }
     } 
     else navigate("/")
   });
@@ -91,11 +100,27 @@ export default function Home() {
       <div>Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
-      <div>
-        <Link to="/professorcourse">
-          <button>Back</button>
-        </Link>
-      </div>
+      {isProf && 
+        <div>
+          <Link to="/professorcourse">
+            <button>Back</button>
+          </Link>
+        </div>
+      }
+      {isAdmin && 
+        <div>
+          <Link to="/admincourse">
+            <button>Back</button>
+          </Link>
+        </div>
+      }
+      {isDeptHead && 
+        <div>
+          <Link to="/deptheadcourse">
+            <button>Back</button>
+          </Link>
+        </div>
+      }
       <div>
         <h3>All Course Outlines</h3>
       </div>

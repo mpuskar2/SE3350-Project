@@ -8,6 +8,7 @@ import { Page, Text, View, Document, StyleSheet, PDFViewer, PDFDownloadLink, Fon
 export default function Home() {
   const [user, setUser] = useState(undefined);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isDeptHead, setIsDeptHead] = useState(false);
   const outlinesData = useRef([]);
   const commentData = useRef('');
   const approved = useRef('');
@@ -22,6 +23,8 @@ export default function Home() {
       setUser(currentUser);
       if (currentUser.displayName === "A") {
         setIsAdmin(true);
+      } else if (currentUser.displayName === "D") {
+        setIsDeptHead(true);
       }
     }
     else navigate("/")
@@ -67,6 +70,25 @@ export default function Home() {
       set(oRef, {
         approvalStatus: data.approvalStatus,
         comments: comment,
+        contents: data.contents,
+        courseName: data.courseName,
+        modifiedTime: data.modifiedTime,
+        versionNum: data.versionNum,
+        whoModified: data.whoModified
+      });
+    });
+  }
+
+  function approve(id) {
+    const db = getDatabase();
+    const oRef = ref(db, 'Outlines/' + id);
+
+    onValue(oRef, (snapshot) => {
+      const data = snapshot.val();
+
+      set(oRef, {
+        approvalStatus: "approved",
+        comments: data.comments,
         contents: data.contents,
         courseName: data.courseName,
         modifiedTime: data.modifiedTime,
@@ -577,7 +599,7 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
             <MyDocument />
         </PDFViewer>
         <div>
-          <label>GA Indicator Assessment:</label>
+          <label>GA Indicator Assessment:</label><br></br>
           {outlinesData.current[55]}
         </div>
         {isAdmin && <>
@@ -587,6 +609,11 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
             addComment(courseandversion, document.getElementById('comments').value);
             }}>Add</button>
         </>}
+        {isDeptHead && 
+          <div>
+            <button onClick={() => approve(courseandversion)}>Approve</button>
+          </div>
+        }
     </>
   )
 }
