@@ -13,8 +13,7 @@ export default function Home() {
   });
 
   const activeClass = ((setActive) => {
-    var activeCourse = setActive;
-    localStorage.setItem("courseName", activeCourse);
+    localStorage.setItem("courseName", setActive);
   });
 
   return (

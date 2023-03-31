@@ -13,7 +13,6 @@ export default function Home() {
   const commentData = useRef('');
   const approved = useRef('');
   const whoModified = useRef('');
-  const needData = useRef(true);
   const navigate = useNavigate();
   const activeCourse = localStorage.getItem("courseName");
   const courseandversion = localStorage.getItem('cNameAndVer');
@@ -31,33 +30,17 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (needData.current) {
-      needData.current = false;
-      const db = getDatabase();
-      const ocRef = ref(db, 'Outlines/' + courseandversion);
-    
-      onValue(ocRef, (snapshot) => {
-        const data = snapshot.val();
-        const fields = data.contents;
-        outlinesData.current = fields;
-        commentData.current = data.comments;
-        approved.current = data.approvalStatus;
-        whoModified.current = data.whoModified;
-      });
-    }
-    else {
-      const db = getDatabase();
-      const ocRef = ref(db, 'Outlines/' + courseandversion);
-    
-      onValue(ocRef, (snapshot) => {
-        const data = snapshot.val();
-        const fields = data.contents;
-        outlinesData.current = fields;
-        commentData.current = data.comments;
-        approved.current = data.approvalStatus;
-        whoModified.current = data.whoModified;
-      });
-    }
+    const db = getDatabase();
+    const ocRef = ref(db, 'Outlines/' + courseandversion);
+  
+    onValue(ocRef, (snapshot) => {
+      const data = snapshot.val();
+      const fields = data.contents;
+      outlinesData.current = fields;
+      commentData.current = data.comments;
+      approved.current = data.approvalStatus;
+      whoModified.current = data.whoModified;
+    });
   });
 
   function addComment(id, comment) {
@@ -602,16 +585,17 @@ Students who are in emotional/mental distress should refer to Mental Health @ We
           <label>GA Indicator Assessment:</label><br></br>
           {outlinesData.current[55]}
         </div>
-        {isAdmin && <>
-          <label>Add Comments:</label> <br></br>
+        {(isAdmin || isDeptHead) && <>
+          <br></br><label>Add Comments:</label> <br></br>
           <textarea id='comments' rows='20' cols='60'></textarea> <br></br>
           <button onClick={() => {
             addComment(courseandversion, document.getElementById('comments').value);
-            }}>Add</button>
+            }}>Add Comment</button>
         </>}
         {isDeptHead && 
           <div>
-            <button onClick={() => approve(courseandversion)}>Approve</button>
+            <br></br>
+            <button onClick={() => approve(courseandversion)}>Approve Outline</button>
           </div>
         }
     </>

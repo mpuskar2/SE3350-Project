@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -12,17 +12,29 @@ export default function Home() {
     else navigate("/")
   });
 
-  const takeClass1 = (()=>{
-    navigate("/professorcourse");
-  });
+  function GetButtons() {
+    let courses = localStorage.getItem('profCourses');
+    let courseArr = courses.split(',');
+    let arr = [];
+
+    courseArr.forEach(e => {
+      let div = (
+        <div>
+          <Link to="/professorcourse">
+            <button onClick={() => activeClass(e)}>{e}</button>
+          </Link>
+        </div>
+      );
+      arr.push(div);
+    });
+
+    return (
+      <div>{arr}</div>
+    )
+  }
 
   const activeClass = ((setActive) => {
     localStorage.setItem("courseName", setActive);
-  });
-
-  const nextPage = ((className) => {
-    activeClass(className);
-    takeClass1();
   });
 
   return (
@@ -30,15 +42,7 @@ export default function Home() {
       <div>Professor Home {user?.email}
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
-      <div>
-        <button onClick={() =>nextPage("SE3350")}>se3350</button>
-      </div>
-      <div>
-        <button onClick={() =>nextPage("SE3310")}>se3310</button>
-      </div>
-      <div>
-        <button>Class 3</button>
-      </div>
+      <GetButtons/>
     </>
   )
 }

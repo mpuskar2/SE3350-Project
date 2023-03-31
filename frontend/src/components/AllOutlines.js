@@ -6,12 +6,10 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
-  //const [outlinesData, setData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isDeptHead, setIsDeptHead] = useState(false);
   const [isProf, setIsProf] = useState(false);
   const outlinesData = useRef([]);
-  const needData = useRef(true);
   const navigate = useNavigate();
 
   const activeCourse = localStorage.getItem("courseName");
@@ -31,43 +29,20 @@ export default function Home() {
   });
   
   useEffect(() => {
-    if (needData.current) {
-      needData.current = false;
-      const db = getDatabase();
-      const oRef = ref(db, 'Outlines/');
-    
-      onValue(oRef, (snapshot) => {
-        const data = snapshot.val();
+    const db = getDatabase();
+    const oRef = ref(db, 'Outlines/');
   
-        let arr = [];
-        Object.values(data).forEach(e => {
-          if (e.courseName === activeCourse){
-            arr.push(e);
-          }
-        });
-        outlinesData.current = arr;
-        //needData.current = false;
-        //setData(arr);
+    onValue(oRef, (snapshot) => {
+      const data = snapshot.val();
+
+      let arr = [];
+      Object.values(data).forEach(e => {
+        if (e.courseName === activeCourse){
+          arr.push(e);
+        }
       });
-    }
-    else {
-      const db = getDatabase();
-      const oRef = ref(db, 'Outlines/');
-    
-      onValue(oRef, (snapshot) => {
-        const data = snapshot.val();
-  
-        let arr = [];
-        Object.values(data).forEach(e => {
-          if (e.courseName === activeCourse){
-            arr.push(e);
-          }
-        });
-        outlinesData.current = arr;
-        //needData.current = false;
-        //setData(arr);
-      });
-    }
+      outlinesData.current = arr;
+    });
   });
 
   function setCAV(courseName, versionNum) {

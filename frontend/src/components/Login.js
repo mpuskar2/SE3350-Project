@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles.css';
 import auth from '../firebase';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { getDatabase, ref, onValue, query, orderByChild, equalTo } from "firebase/database";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,17 @@ export default function Login() {
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){
-      if (currentUser.displayName === "P") {
+      if (currentUser.displayName === "P" && email) {
+        const db = getDatabase();
+        const cref = ref(db, 'Courses');
+        const q = query(cref, orderByChild('professor'), equalTo(email));
+    
+        onValue(q, (snapshot) => {
+          const data = snapshot.val();
+          let arr = Object.keys(data);
+          localStorage.setItem('profCourses', arr);
+        });
+
         navigate("/professorhome");
       }
       else if (currentUser.displayName === "A") {
