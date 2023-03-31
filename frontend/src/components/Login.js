@@ -28,7 +28,7 @@ export default function Login() {
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser){
-      if (currentUser.displayName === "P" && email) {
+      if (currentUser.displayName === "P") {
         const db = getDatabase();
         const cref = ref(db, 'Courses');
         const q = query(cref, orderByChild('professor'), equalTo(email));
@@ -39,7 +39,9 @@ export default function Login() {
           localStorage.setItem('profCourses', arr);
         });
 
-        navigate("/professorhome");
+        setTimeout(() => {
+          navigate("/professorhome")
+        }, 500);
       }
       else if (currentUser.displayName === "A") {
         navigate("/adminhome");
