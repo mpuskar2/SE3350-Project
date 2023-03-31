@@ -205,7 +205,7 @@ const MyDocument = () => (
 <Text style={styles.textRegular}>
 <Text style={{fontFamily:'Times-Bold', paddingLeft:30}}>{'\n'}Instructor:	</Text>
 {'\t'}    {outlinesData.current[2]}
-{'\n'} {'\t                   '}    {outlinesData.current[3]}, 519-661-2111 ext. {outlinesData.current[4]}, UWO e-mail address as hyperlink
+{'\n'} {'\t                   '}    {outlinesData.current[3]}, 519-661-2111 ext. {outlinesData.current[4]}, {whoModified.current}
 {'\n'} {'\t                   '}    Consultation hours: {outlinesData.current[5]}
 </Text>
 <Text style={styles.textRegular}>
