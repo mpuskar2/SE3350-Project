@@ -21,6 +21,11 @@ export default function Home() {
         <button onClick={() => signOut(auth)}>Log Out</button>
       </div>
       <div>
+        <Link to="/adminhome">
+          <button>Back</button>
+        </Link>
+      </div>
+      <div>
         <h3>Options for {currentCourse}</h3>
       </div>
       <div>
