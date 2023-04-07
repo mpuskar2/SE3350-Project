@@ -70,7 +70,7 @@ export default function Signup() {
         </li>
         <li className="listElemBtn">
           <span className='transition'>
-            Don't have an account?
+            Already have an account?
           </span> <br></br>
           <Link to="/"><button className='tBtn'>Log in</button></Link>
         </li>

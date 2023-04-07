@@ -66,7 +66,12 @@ export default function Home() {
       arr.push(div);
     });
     return (
+      <>
+      {arr.length === 0 &&
+        <p>Content didn't load, press back and re-enter the page.</p>
+      }
       <ul>{arr}</ul>
+      </>
     )
   }
 
